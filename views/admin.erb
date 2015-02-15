@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>The Lodge</title>
+    <link rel="stylesheet" href="/css/style.css" type="text/css" charset="utf-8">
+  </head>
+
+  <body> 
+      <div class="image-wrapper"> 
+        <table>
+        <img class="stretch" height="200px" src="/images/IMG_7881_cropped.jpg" alt="header image" border-color="FFFFFF"/> 
+        <h1>The Lodge</h1><br>
+        <h1 style="margin: 2px 0px 0px 100px; font-size: 20px; font-style: italic"><br>Come a stranger. Leave a part of our family!</h1> 
+        </table>
+      </div>
+    
+    <table width="1200px" padding="10px" border-right="1px" v-align="top">
+      <tr>
+        <td width="300px" valign="top">
+          <h3 style="font-color: #2196F3">Manage Reservations
+          </h3>
+            <h4><a href="/about_us/">About Us</a>
+              <br>
+            <a href="about_us/activities">Activities</a>
+              <br>
+            <a href="about_us/prices">Prices</a>
+              <br>
+            <a href="about_us/guest_reviews">Guest Reviews</a>
+              <br>
+            <a href="about_us/photo_gallery">Photo Gallery</a></h4>
+
+
+          <h3 style="font-color: #2196F3">Manage Guests</h3>
+            <h4><a href="plan_your_visit/calendar">Calendar</a>
+              <br>
+            <a href="plan_your_visit/reservation_request">Reservation Request</a></h4>
+              <br>
+              <br>
+          </td>
+
+          <td>
+              <%= yield %>
+          </td>
+      </tr>
+    </table>
+
+      <hr>
+
+      <footer>
+        <table width="1200" border-top="2px" border-color="#B6B6B6" cellspacing="0" cellpadding="10">
+          <tr>
+            <td class="footer" valign="center"><p><a href="http://www.facebook.com" target="blank"><img src="/css/images/fb.jpg" alt="facebook icon" align="left" valign="center" width="40"> </a><a href="http://twitter.com/" target="blank"><img src="/css/images/twitter.jpg" alt="twitter icon" align="left" valign="center" width="40"></a><a href="http://vimeo.com/" target="blank"><img src="/css/images/vimeo.jpg" alt="vimeo icon" align="left" valign="center" width="40"> </a>
+            </td>
+            <td align="center"><p><em>Call now to book an unforgettable vacation experience!</em></p></td>
+            <td align="right"><a href="http://www.thelodge.com/">Steward Farms - The Lodge</a><br />
+            37174 155th St<br>
+      Chelsea  SD  57465  •  877.900.1414<br>
+            <a href="mailto:info@thelodge.com">info@thelodge.com</a><br>
+          </td>
+         </tr>
+       </table>
+      </footer>
+  </body>
+</html>
