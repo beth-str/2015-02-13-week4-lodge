@@ -4,7 +4,8 @@
 #
 # Attributes:
 # @id              - Integer (Primary Key - automatically assigned)
-# @name            - String: name of guest
+# @first_name      - String: first name of guest
+# @last_name       - String: last name of guest
 # @age             - Integer: age
 # @reservations_id - Integer: id from reservations table (Foreign Key)
 #
@@ -16,11 +17,12 @@
 
 class Guest
   attr_reader :id, :reservations_id
-  attr_accessor :name, :age
+  attr_accessor :first_name, :last_name, :age
   
   def initialize(options)
     @id              = options["id"]
-    @name            = options["name"]
+    @first_name      = options["first_name"]
+    @last_name       = options["last_name"]
     @age             = options["age"]
     @reservations_id = options["reservations_id"]
   end
@@ -30,78 +32,61 @@ class Guest
   # Inserts new instantiation into the database
   #---------------------------------------------------------
   def insert
-    DATABASE.execute("INSERT INTO guests (name, age, reservations_id) VALUES ('#{@name}', '#{@age}', '#{@reservations_id}')")
+    DATABASE.execute("INSERT INTO guests (first_name, last_name, age, reservations_id) VALUES ('#{@first_name}', '#{@last_name}', '#{@age}', '#{@reservations_id}')")
     @id = DATABASE.last_insert_row_id     # will return the value of the row id
   end
+
+  #---------------------------------------------------------
+  # Public: #save
+  # When changes are made to a Reservation object, this saves the changes to the database
+  #---------------------------------------------------------
+  def save(params)
+    DATABASE.execute("UPDATE guests SET 
+    first_name ='#{params[:first_name]}', 
+    last_name ='#{params[:last_name]}', 
+    age = #{params[:age]}, 
+    reservations_id = #{params[:reservations_id]}' 
+    WHERE id = #{params[:id]}")
+    return true
+end
   
   #---------------------------------------------------------
   # Public: .all
-  # Displays all locations
-  #
-  # Parameter: None
-  #
-  # Returns: None
-  #
-  # State Changes: None
+  # Displays all guests
   #---------------------------------------------------------
   def self.all
-    x = DATABASE.execute("SELECT * FROM locations")
-    x.each do |x|
-        puts "#{x[0]}: #{x[1]}"
+    results = DATABASE.execute("SELECT * FROM guests")
+    @results_as_objects = []
+      results.each do |r|
+        @results_as_objects << Guest.new(r)
+      end
+      results_as_objects = @results_as_objects
+      return results_as_objects
+  end
+
+  # Public: #display_attributes
+   # Returns the attributes of an object as a table.
+   #
+   # Parameters:
+   # attributes              - Array: an array for the column headings      
+   #
+   # Returns:
+   # Table -  String:  a detailed table for the object
+   #
+   # State changes:
+   # creates a new row in table for each attribute of the object.
+  
+  def display_attributes
+       attributes = []
+       instance_variables.each do |i|
+         # Example  :@name
+         attributes << i.to_s.delete("@")
+       end
+      table = "<table><tr><th>FIELD</th><th>VALUE</th></tr>"
+      attributes.each do |a|
+        table += "<tr><td>#{a}</td><td>#{self.send(a)}</td></tr>"
+      end
+      table += "</table>"
+      table
     end
-  end
-
-  def display
-   attributes = []
-   query_components_array = []
-
-   instance_variables.each do |i|
-     attributes << i.to_s.delete("@")
-   end
-
-   attributes.each do |a|
-     value = self.send(a)
-     if value.is_a?(Float)
-       front_spacer = " " * (12 - a.length)
-       back_spacer = " " * (49 - ("#{self.send(a)}".length))
-       puts "#{a}:" + "#{front_spacer}" + "#{back_spacer}" + "$#{self.send(a)}"
-     else
-       front_spacer = " " * (12 - a.length)
-       back_spacer = " " * (50 - ("#{self.send(a)}".length))
-       puts "#{a}:" + "#{front_spacer}" + "#{back_spacer}" + "#{self.send(a)}"
-     end
-   end
-   puts "=" * 63
-   return
-  end
-
-
-  #---------------------------------------------------------
-  # Public: .delete
-  # Deletes a single location if no products are assigned to it
-  #
-  # Parameter: location_id
-  #
-  # Returns: None
-  #
-  # State Changes: Deletes location
-  #---------------------------------------------------------
-  def self.delete(id_to_remove)
-    x = DATABASE.execute("SELECT location_id FROM products WHERE location_id = #{id_to_remove}")
-    if x.length == 0
-      DATABASE.execute("DELETE FROM locations WHERE id = #{id_to_remove}")
-    else
-      DATABASE.execute("SELECT * FROM products WHERE location_id = #{id_to_remove}")
-    end
-  end
-
-
-  #---------------------------------------------------------
-  # Public: #city
-  # "Translates" between the location_id and the actual name of the city
-  #---------------------------------------------------------
-  def city
-    DATABASE.execute("SELECT city FROM products INNER JOIN locations ON Products.location_id = Locations.id WHERE title = 'book_to_edit'8")
-  end
-
 end

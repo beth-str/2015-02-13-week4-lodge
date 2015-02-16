@@ -1,0 +1,13 @@
+<h2>Review these reservation requests. If approved, change the status to "approved". If cancelled, change the status to "cancelled".</h2>
+
+
+<% Reservation.all.each do |x| %>
+  <tr>
+<% if x.status == "requested" %>
+    <td><%= x.id %></td>
+    <td><%= x.name %></td>
+    <td><button onclick="details('<%= x.display_attributes %>')">More Details</button></td>
+    <td><a href="/edit_reservation?id=<%= x.id %>">Edit</a></td>
+    <!-- <td><a href="/delete_product?id=<%= x.id %>">Delete</a></td> -->
+  </tr>
+  <% end %>

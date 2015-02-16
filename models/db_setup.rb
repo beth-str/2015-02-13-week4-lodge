@@ -11,7 +11,8 @@ DATABASE.execute("CREATE TABLE IF NOT EXISTS admins
 
 DATABASE.execute("CREATE TABLE IF NOT EXISTS activities
                 (id INTEGER PRIMARY KEY,
-                name TEXT NOT NULL)")
+                name TEXT NOT NULL,
+                person_limit INTEGER)")
 
 DATABASE.execute("CREATE TABLE IF NOT EXISTS guests
                 (id INTEGER PRIMARY KEY,
@@ -29,19 +30,19 @@ DATABASE.execute("CREATE TABLE IF NOT EXISTS guests_activities
 
 DATABASE.execute("CREATE TABLE IF NOT EXISTS reservations
                 (id INTEGER PRIMARY KEY,
-                name TEXT NOT NULL UNIQUE,
+                name TEXT NOT NULL,
                 email TEXT NOT NULL,
                 address TEXT NOT NULL,
                 city TEXT NOT NULL,
                 state TEXT NOT NULL,
-                phone INTEGER NOT NULL,
+                phone TEXT NOT NULL,
                 no_adults INTEGER NOT NULL,
                 no_children INTEGER,
                 arrival_date TEXT NOT NULL,
                 departure_date TEXT NOT NULL,
-                group_activity TEXT,
-                comments TEXT)")
+                comments TEXT,
+                status TEXT)")
 
 DATABASE.results_as_hash = true
-# DATABASE.execute("SELECT * FROM products INNER JOIN categories ON Products.category_id = Categories.id")
+# DATABASE.execute("SELECT * FROM guests_activities INNER JOIN categories ON Products.category_id = Categories.id")
 # DATABASE.execute("SELECT * FROM products INNER JOIN locations ON Products.location_id = Locations.id")

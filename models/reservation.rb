@@ -8,13 +8,13 @@
 # @address        - String: address
 # @city           - String: city
 # @state          - String: state
-# @phone          - Integer: phone
+# @phone          - String: phone
 # @no_adults      - Integer: the number of adults in the group
-# @no_children    - Integer: the number of children in the group
+# @no_children    - Integer: the number of children in the group (12 and under)
 # @arrival_date   - String: the arrival date
 # @departure_date - String: the departure date
-# @group_activity - String: the group's activity
 # @comments       - String: add'l information
+# @status         - Text: reservation status: requested, approved, cancelled
 #
 # Public Methods:
 # #insert
@@ -26,7 +26,7 @@
 #---------------------------------------------------------
 class Reservation
   attr_reader :id
-  attr_accessor :name, :email, :address, :city, :state, :phone, :no_adults, :no_children, :arrrival_date, :departure_date, :group_activity, :comments
+  attr_accessor :name, :email, :address, :city, :state, :phone, :no_adults, :no_children, :arrrival_date, :departure_date, :comments, :status
 
   def initialize(options)
     @name           = options["name"]
@@ -39,8 +39,8 @@ class Reservation
     @no_children    = options["no_children"]
     @arrival_date   = options["arrival_date"]
     @departure_date = options["departure_date"]
-    @group_activity = options["group_activity"]
     @comments       = options["comments"]
+    @status         = options["status"]
   end
 
   #---------------------------------------------------------
@@ -48,7 +48,7 @@ class Reservation
   # Inserts new instantiation into the database
   #---------------------------------------------------------
   def insert
-    DATABASE.execute("INSERT INTO reservations (name, email, address, city, state, phone, no_adults, no_children, arrival_date, departure_date, group_activity, comments) VALUES ('#{@name}', '#{@email}', '#{@email}', '#{@email}', '#{@email}', '#{@email}', '#{@no_adults}', '#{@no_children}', '#{@arrival_date}', '#{@departure_date}', '#{@group_activity}', '#{comments}')")
+    DATABASE.execute("INSERT INTO reservations (name, email, address, city, state, phone, no_adults, no_children, arrival_date, departure_date, comments, status) VALUES ('#{@name}', '#{@email}', '#{@address}', '#{@city}', '#{@state}', '#{@phone}', '#{@no_adults}', '#{@no_children}', '#{@arrival_date}', '#{@departure_date}', '#{comments}', '#{@status}')")
     @id = DATABASE.last_insert_row_id
   end
 
@@ -57,7 +57,19 @@ class Reservation
   # When changes are made to a Reservation object, this saves the changes to the database
   #---------------------------------------------------------
   def save(params)
-    DATABASE.execute("UPDATE reservations SET name ='#{params[:name]}', email = '#{params[:email]}', address = '#{params[:address]}', city = '#{params[:city]}', state = '#{params[:state]}', phone = #{params[:phone]}, no_adults = #{params[:no_adults]}, no_children = #{params[:no_children]}, arrival_date = '#{params[:arrival_date]}', departure_date = '#{params[:departure_date]}', group_activity = '#{params[:group_activity]}', comments = '#{params[:comments]}' WHERE id = #{params[:id]}")
+    DATABASE.execute("UPDATE reservations SET 
+    name = '#{params[:name]}', 
+    email = '#{params[:email]}', 
+    address = '#{params[:address]}', 
+    city = '#{params[:city]}', 
+    state = '#{params[:state]}', 
+    phone = '#{params[:phone]}', 
+    no_adults = #{params[:no_adults]}, 
+    no_children = #{params[:no_children]}, 
+    arrival_date = '#{params[:arrival_date]}', 
+    departure_date = '#{params[:departure_date]}', 
+    comments = '#{params[:comments]}', 
+    status = '#{params[:status]}' WHERE id = #{params[:id]}")
     return true
 end
 
@@ -88,5 +100,32 @@ end
   def self.delete(email)
       DATABASE.execute("DELETE FROM reservations WHERE email = '#{email}'")
   end
+  
+  
+  # Public: #display_attributes
+   # Returns the attributes of an object as a table.
+   #
+   # Parameters:
+   # attributes              - Array: an array for the column headings      
+   #
+   # Returns:
+   # Table -  String:  a detailed table for the object
+   #
+   # State changes:
+   # creates a new row in table for each attribute of the object.
+  
+  def display_attributes
+       attributes = []
+       instance_variables.each do |i|
+         # Example  :@name
+         attributes << i.to_s.delete("@")
+       end
+      table = "<table><tr><th>FIELD</th><th>VALUE</th></tr>"
+      attributes.each do |a|
+        table += "<tr><td>#{a}</td><td>#{self.send(a)}</td></tr>"
+      end
+      table += "</table>"
+      table
+    end
 
 end

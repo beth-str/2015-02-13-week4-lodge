@@ -6,12 +6,12 @@
     <link rel="stylesheet" href="/css/style.css" type="text/css" charset="utf-8">
   </head>
 
-  <body> 
+  <body background-color="#FFFFCC"> 
       <div class="image-wrapper"> 
         <table>
-        <a href="/"><img class="stretch" height="200px" src="/images/IMG_7881_cropped.jpg" alt="header image" border-color="FFFFFF"/></a> 
+        <a href="/"><img class="stretch" height="140px" src="/images/to-do.png" alt="header image" border-color="FFFFFF"/></a> 
         <h1>The Lodge</h1><br>
-        <h1 style="margin: 2px 0px 0px 100px; font-size: 20px; font-style: italic"><br>Come a stranger. Leave a part of our family!</h1> 
+        <h1 style="margin: 2px 0px 0px 60px; font-size: 20px; font-style: italic"><br>Come a stranger. Leave a part of our family!</h1> 
         </table>
       </div>
     
@@ -31,9 +31,16 @@
             <a href="/photo_gallery">Photo Gallery</a></h4>
 <br>
           <h3 style="font-color: #2196F3">Plan Your Visit</h3>
-            <h4><a href="/calendar">Calendar</a>
+            <h4>
+              <a href="/calendar">View Availability Calendar
+              </a>
               <br>
-            <a href="/reservations">Reservation Request</a></h4>
+              <a href="/new_reservation">Make a Reservation
+              </a>
+              <br>
+              <a href="/add_guest">Add a Guest
+              </a>
+            </h4>
               <br>
               <br>
             <h4><a href="faqs">FAQs</a>
@@ -44,19 +51,44 @@
 
           <td valign="top">
               <%= yield %>
+              <br>
+              <br>
+              <br>
           </td>
       </tr>
+      <tr>
+        <td width="300px" valign="top">
+        </td>
+          <td valign="bottom">
+            <!-- <iframe id="forecast_embed" type="text/html" frameborder="0" height="245" width="75%" src="http://forecast.io/embed/#lat=45.143994&lon=-98.742006&name=The Lodge&color=#2196F3">
+            </iframe> -->
+          </td>
+        </tr>
     </table>
 
-      <hr>
-
       <footer>
-        <table width="1200" border-top="2px" border-color="#B6B6B6" cellspacing="0" cellpadding="10">
-          <tr>
-            <td width="200" class="footer" valign="top"><p><a href="http://www.facebook.com" target="blank"><img src="/images/fb.jpg" alt="facebook icon" align="left" valign="center" width="40"> </a><a href="http://twitter.com/" target="blank"><img src="/images/twitter.jpg" alt="twitter icon" align="left" valign="center" width="40"></a><a href="http://vimeo.com/" target="blank"><img src="/images/vimeo.jpg" alt="vimeo icon" align="left" valign="center" width="40"> </a>
+        <table width="1200" style="border-top: 4px solid #FFC107;" cellspacing="2" cellpadding="10">
+            <td width="200" class="footer" valign="top">
+              <p>
+                <a href="http://www.facebook.com" target="blank">
+                  <img src="/images/fb.jpg" alt="facebook icon" align="left" valign="center" width="40"> 
+                </a>
+                <a href="http://twitter.com/" target="blank">
+                  <img src="/images/twitter.jpg" alt="twitter icon" align="left" valign="center" width="40">
+                </a>
+                <a href="http://vimeo.com/" target="blank">
+                  <img src="/images/vimeo.jpg" alt="vimeo icon" align="left" valign="center" width="40"> 
+                </a>
             </td>
-            <td align="center"><p><em><strong>Call now to book an unforgettable vacation experience!</em></p></td>
-            <td width="200" align="right"><a href="http://www.thelodge.com/">Steward Farms - The Lodge</a><br />
+            <td align="center" valign="top">
+              <p>
+                <em><strong>Book your unforgettable vacation experience now!
+                </strong></em>
+              </p>
+            </td>
+            <td width="200" align="right">
+              <a href="http://www.thelodge.com/">Steward Farms - The Lodge
+              </a><br>
       37174 155th St<br>
       Chelsea  SD  57465<br>
       877.900.1414<br>

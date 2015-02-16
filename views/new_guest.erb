@@ -1,0 +1,29 @@
+<h2>Guests</h2>
+
+<p>Please register each of the guests in your party.</p>
+
+<form action="/new_guest_confirm">
+  
+  <p>Select your reservation group name:<br>
+    <select name="reservations_id">
+      <% Reservation.all.each do |x| %>
+        <option value="<%= x.id %>"><%= x.name %>
+        </option>
+      <% end %>
+    </select>
+  
+  <p>First Name:<br>
+    <input type="text" required name="first_name">
+  </p>
+
+  <p>Last Name:<br>
+    <input type="text" required name="last_name">
+  </p>
+
+  <p>Age:<br>
+    <input type="number" required name="age">
+  </p>
+
+  <input type="submit" value="Add Guest">
+  
+</form>
