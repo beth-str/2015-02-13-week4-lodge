@@ -1,3 +1,11 @@
+<head>
+  <script>
+    $(function() {
+      $( "#datepicker" ).datepicker();
+    });
+    </script>
+</head>
+
 <h2>Reservation Request</h2>
 
 <p>Please fill out the form below. After reviewing your request, we will contact you to confirm your visit.</p>
@@ -82,15 +90,11 @@
     <p>Number of Children (12 and under):<br>
       <input type="number" style="font-size:14px" required name="no_children"></p>
 
-    <div class="left">
       <p>Arrival Date:<br>
-        <input type="text" style="font-size:14px" required id="arrival" name="arrival_date"></p> 
-    </div>
+        <input type="text" style="font-size:14px" required id="datepicker" name="arrival_date"></p> 
 
-    <div class="right">
       <p>Departure Date:<br>
-        <input type="text" style="font-size:14px" required id="departure" name="departure_date"></p> 
-    </div>
+        <input type="text" style="font-size:14px" required id="datepicker" name="departure_date"></p> 
 
     <p>Any special considerations? (i.e., allergies, disabilities, etc.)<br>
       <textarea rows="10" cols="50" style="font-size:14px" required name="comments">

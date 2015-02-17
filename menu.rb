@@ -1,7 +1,11 @@
 require 'pry'
 require 'sinatra'
 require 'sqlite3'
+require 'coffee-script'
+require 'v8'
 require 'forecast_io'
+require 'rubygems'
+require 'google_calendar'
 DATABASE = SQLite3::Database.new("database/lodge.db")
 require_relative "module.rb"
 require_relative "models/db_setup.rb"
@@ -11,6 +15,9 @@ require_relative "models/guest.rb"
 
 
 DATABASE.results_as_hash = true
+
+#------------FUNCTIONS-----------
+
 
 #--------WEBSITE (PUBLIC)--------
 
@@ -67,88 +74,93 @@ end
 #------------ADMIN (PRIVATE)-----------
 #-------------RESERVATIONS-------------
 
-get "/admin" do
-  erb :admin_menu, :layout => :admin
+get '/:admin' do
+  erb :'/admin/admin_menu', :layout => :admin
 end
 
-get "/admin/add_reservation" do
-  erb :add_reservation, :layout => :admin
+get '/:admin/add_reservation' do
+  erb :'/admin/add_reservation', :layout => :admin
 end
 
-get "/admin/add_reservation_confirm" do
+get '/:admin/add_reservation_confirm' do
   x = Reservation.new(params)
   x.insert
-  erb :add_reservation_confirm, :layout => :admin
+  erb :'/admin/add_reservation_confirm', :layout => :admin
 end
 
-get "/admin/edit_reservation" do
-  erb :edit_reservation, :layout => :admin
+get '/:admin/edit_reservation' do
+  erb :'admin/edit_reservation', :layout => :admin
 end
 
-get "/admin/edit_reservation_form" do
+get '/:admin/edit_reservation_form' do
   @form_values = Reservation.where_email_is(params[:email])
-  erb :edit_reservation_form, :layout => :admin
+  erb :'admin/edit_reservation_form', :layout => :admin
 end
 
-get "/admin/edit_reservation_confirm" do
+get '/:admin/edit_reservation_confirm' do
   x = Reservation.new(params)
   x.save(params)
-  erb :edit_reservation_confirm, :layout => :admin
+  erb :'admin/edit_reservation_confirm', :layout => :admin
 end
 
-get "/admin/approve_reservation" do
-  erb :approve_reservation, :layout => :admin
+get '/:admin/approve_reservation' do
+  erb :'admin/approve_reservation', :layout => :admin
 end
 
-get "/admin/cancel_reservation" do
-  erb :cancel_reservation, :layout => :admin
+get '/:admin/delete_reservation' do
+  erb :'admin/delete_reservation', :layout => :admin
 end
 
-get "/admin/cancel_reservation_confirm" do
-  Reservation.delete(params["id"])
-  erb :cancel_reservation_confirm, :layout => :admin
+get '/:admin/delete_reservation_confirm' do
+  Reservation.delete(params["email"])
+  erb :'admin/cancel_reservation_confirm', :layout => :admin
 end
 
-get "/admin/show_reservation" do
-  erb :show_reservation, :layout => :admin
+get '/:admin/cancel_reservation' do
+  erb :'admin/cancel_reservation', :layout => :admin
+end
+
+get '/:admin/cancel_reservation_confirm' do
+  Reservation.delete(params["email"])
+  erb :'admin/cancel_reservation_confirm', :layout => :admin
+end
+
+get '/:admin/show_reservation' do
+  erb :'admin/show_reservation', :layout => :admin
 end
 
 
 
 #-------------GUESTS-------------
 
-get "/admin/add_guest" do
-  erb :add_guest, :layout => :admin
+get '/:admin/add_guest' do
+  erb :'admin/add_guest', :layout => :admin
 end
 
-get "/admin/add_guest_confirm" do
+get '/:admin/add_guest_confirm' do
   @x = Guest.new(params)
   @x.insert
-  erb :add_guest_confirm, :layout => :admin
+  erb :'admin/add_guest_confirm', :layout => :admin
 end
 
-get "/admin/edit_guest" do
-  erb :edit_guest, :layout => :admin
+get '/:admin/edit_guest' do
+  erb :'admin/edit_guest', :layout => :admin
 end
 
-get "/admin/edit_guest_form" do
+get '/:admin/edit_guest_form' do
   @form_values = Guest.where_email_is(params[:email])
-  erb :edit_guest_form, :layout => :admin
+  erb :'admin/edit_guest_form', :layout => :admin
 end
 
-get "/admin/edit_guest_confirm" do
+get '/:admin/edit_guest_confirm' do
   x = Guest.new(params)
   x.save(params)
-  erb :edit_guest_confirm, :layout => :admin
+  erb :'admin/edit_guest_confirm', :layout => :admin
 end
 
-
-
-
-
-get "/admin/delete_guest" do
-  @results_as_objects = Category.all
-  erb :delete_genre, :layout => :admin
+get '/:admin/delete_guest' do
+  @results_as_objects = Guest.all
+  erb :'admin/delete_guest', :layout => :admin
 end
 
 before "/admin/delete_genre_confirm" do
