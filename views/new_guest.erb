@@ -1,17 +1,20 @@
-<h2>Guests</h2>
+<!-- needs to remove names from reservations list if status is "cancelled" or "closed" -->
+
+<h2>Add a Guest</h2>
 
 <p>Please register each of the guests in your party.</p>
 
-<form action="/new_guest_confirm">
+<form action="/add_guest_confirm">
   
   <p>Select your reservation group name:<br>
-    <select name="reservations_id">
+    <select name="reservation_id">
       <% Reservation.all.each do |x| %>
-        <option value="<%= x.id %>"><%= x.name %>
+        <option value="<%= x.id %>"><%= x.id %>. <%= x.name %>
         </option>
       <% end %>
     </select>
   
+  <h3>Register Your Guest:</h3>
   <p>First Name:<br>
     <input type="text" required name="first_name">
   </p>
@@ -24,6 +27,13 @@
     <input type="number" required name="age">
   </p>
 
+    <p>Gender:<br>
+      <select name="gender">
+      	<option value="---">---</option>
+      	<option value="female">female</option>
+      	<option value="male">male</option>
+      </select></p>
+      
   <input type="submit" value="Add Guest">
   
 </form>

@@ -1,0 +1,11 @@
+<h2>Current Guests:</h2>
+
+  <% @results_as_objects.each do |x| %>
+    <h3><%= x.id %>. <%= x.name %></h3>
+        <p class="indent-20">Guests assigned to <strong><%= x.name %></strong> Party:</p>
+        <% @guests.each do |y| %>
+          <% if y.reservation_id == x.id %>
+          <p class="indent-40"><%= y.id %>. <%= y.first_name %> <%= y.last_name %></p>
+          <% end %>
+        <% end %>
+  <% end %>

@@ -16,26 +16,28 @@ DATABASE.execute("CREATE TABLE IF NOT EXISTS activities
 
 DATABASE.execute("CREATE TABLE IF NOT EXISTS guests
                 (id INTEGER PRIMARY KEY,
-                name TEXT NOT NULL,
+                first_name TEXT NOT NULL,
+                last_name TEXT NOT NULL,
                 age INTEGER NOT NULL,
-                reservations_id INTEGER,
-                FOREIGN KEY (reservations_id) REFERENCES reservations(id))")
+                gender TEXT NOT NULL,
+                reservation_id INTEGER,
+                FOREIGN KEY (reservation_id) REFERENCES reservations(id))")
 
 DATABASE.execute("CREATE TABLE IF NOT EXISTS guests_activities
                 (id INTEGER PRIMARY KEY,
-                guests_id INTEGER,
-                activities_id INTEGER,
-                FOREIGN KEY (guests_id) REFERENCES guests(id),
-                FOREIGN KEY (activities_id) REFERENCES activities(id))")
+                guest_id INTEGER,
+                activity_id INTEGER,
+                FOREIGN KEY (guest_id) REFERENCES guests(id),
+                FOREIGN KEY (activity_id) REFERENCES activities(id))")
 
 DATABASE.execute("CREATE TABLE IF NOT EXISTS reservations
                 (id INTEGER PRIMARY KEY,
-                name TEXT NOT NULL,
-                email TEXT NOT NULL,
-                address TEXT NOT NULL,
-                city TEXT NOT NULL,
+                name VARCHAR(60) NOT NULL,
+                email VARCHAR(80) NOT NULL,
+                address VARCHAR(80) NOT NULL,
+                city VARCHAR(80) NOT NULL,
                 state TEXT NOT NULL,
-                phone TEXT NOT NULL,
+                phone VARCHAR(20) NOT NULL,
                 no_adults INTEGER NOT NULL,
                 no_children INTEGER,
                 arrival_date TEXT NOT NULL,

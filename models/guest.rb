@@ -7,7 +7,8 @@
 # @first_name      - String: first name of guest
 # @last_name       - String: last name of guest
 # @age             - Integer: age
-# @reservations_id - Integer: id from reservations table (Foreign Key)
+# @gender          - String: gender
+# @reservation_id - Integer: id from reservations table (Foreign Key)
 #
 # Public Methods:
 # #insert
@@ -16,15 +17,16 @@
 #---------------------------------------------------------
 
 class Guest
-  attr_reader :id, :reservations_id
-  attr_accessor :first_name, :last_name, :age
+  attr_reader :id, :reservation_id
+  attr_accessor :first_name, :last_name, :age, :gender
   
   def initialize(options)
     @id              = options["id"]
     @first_name      = options["first_name"]
     @last_name       = options["last_name"]
     @age             = options["age"]
-    @reservations_id = options["reservations_id"]
+    @gender          = options["gender"]
+    @reservation_id = options["reservation_id"]
   end
   
   #---------------------------------------------------------
@@ -32,7 +34,7 @@ class Guest
   # Inserts new instantiation into the database
   #---------------------------------------------------------
   def insert
-    DATABASE.execute("INSERT INTO guests (first_name, last_name, age, reservations_id) VALUES ('#{@first_name}', '#{@last_name}', '#{@age}', '#{@reservations_id}')")
+    DATABASE.execute("INSERT INTO guests (first_name, last_name, age, gender, reservation_id) VALUES ('#{@first_name}', '#{@last_name}', '#{@age}', '#{@gender}', '#{@reservation_id}')")
     @id = DATABASE.last_insert_row_id     # will return the value of the row id
   end
 
@@ -45,10 +47,26 @@ class Guest
     first_name ='#{params[:first_name]}', 
     last_name ='#{params[:last_name]}', 
     age = #{params[:age]}, 
-    reservations_id = #{params[:reservations_id]}' 
+    gender = '#{params[:gender]}', 
+    reservation_id = #{params[:reservation_id]}' 
     WHERE id = #{params[:id]}")
     return true
 end
+
+#---------------------------------------------------------
+# Public: .where_id_is
+# Searches the Guest class for a single id
+#
+# Parameter: Integer: id
+#
+# Returns: Single Guest object with matching id (passed as argument)
+#---------------------------------------------------------
+def where_id_is(id)
+  x = DATABASE.execute("SELECT * FROM guests WHERE id = #{id}")
+  results = Guest.new(params)
+  return results
+end
+
   
   #---------------------------------------------------------
   # Public: .all

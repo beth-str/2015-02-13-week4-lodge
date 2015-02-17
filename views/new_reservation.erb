@@ -1,7 +1,13 @@
 <head>
+  <title>jQuery UI Datepicker - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">  
   <script>
     $(function() {
-      $( "#datepicker" ).datepicker();
+      $( "#arrival_date" ).datepicker();
+      $( "#departure_date" ).datepicker();
     });
     </script>
 </head>
@@ -24,7 +30,6 @@
     <input type="text" style="font-size:14px" required class="longtextbox" name="city"></p>
 
     <p>State:<br>
-    <form>
       <select name="state">
       	<option value="---">---</option>
       	<option value="AL">Alabama</option>
@@ -79,7 +84,6 @@
       	<option value="WI">Wisconsin</option>
       	<option value="WY">Wyoming</option>
       </select>
-    </form>
 
     <p>Phone (e.g., 6517775084):<br>
       <input type="text" style="font-size:14px" required name="phone"></p>
@@ -91,15 +95,16 @@
       <input type="number" style="font-size:14px" required name="no_children"></p>
 
       <p>Arrival Date:<br>
-        <input type="text" style="font-size:14px" required id="datepicker" name="arrival_date"></p> 
+        <input type="text" style="font-size:14px" required id="arrival_date" name="arrival_date"></p> 
 
       <p>Departure Date:<br>
-        <input type="text" style="font-size:14px" required id="datepicker" name="departure_date"></p> 
+        <input type="text" style="font-size:14px" required id="departure_date" name="departure_date"></p> 
 
     <p>Any special considerations? (i.e., allergies, disabilities, etc.)<br>
       <textarea rows="10" cols="50" style="font-size:14px" required name="comments">
       </textarea></p>
 
       <input type="hidden" required name="status" value="requested">
+      
       <input type="submit">
     </form>

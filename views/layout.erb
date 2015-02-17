@@ -4,9 +4,6 @@
   <head>
     <title>The Lodge</title>
     <link rel="stylesheet" href="/css/style.css" type="text/css" charset="utf-8">
-    <script src="/datepicker/script.js" type="text/javascript" charset="utf-8"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-    
   </head>
 
   <body background-color="#FFFFCC"> 
@@ -20,7 +17,7 @@
     
     <table width="1200px" padding="10px" border-right="1px" valign="top">
       <tr>
-        <td width="300px" valign="top">
+        <td width="225px" valign="top">
           <h3 style="font-color: #2196F3">Welcome!
           </h3>
             <h4><a href="/about">About Us</a>
@@ -35,23 +32,31 @@
 <br>
           <h3 style="font-color: #2196F3">Plan Your Visit</h3>
             <h4>
-              <a href="/calendar">View Availability Calendar
-              </a>
+              <a href="/calendar">View Availability Calendar</a>
               <br>
-              <a href="/new_reservation">Make a Reservation
-              </a>
+              <a href="/new_reservation">Make a Reservation</a>
               <br>
               <a href="/add_guest">Add a Guest
               </a>
             </h4>
               <br>
+              <table width="200px" bgcolor="#BBDEFB" padding="3px">
+                <tr>
+                  <h4>Current Weather at <br>
+                    The Lodge:<h4>
+                    <% ForecastIO.api_key = 'ed0a207e484c0315f2b0f75b58c38d62' %>
+                    <h4 class="indent-20" class="blue">
+                      <strong><%= ForecastIO.forecast(45.143994,-98.472006).currently[:temperature].round %>˚F<br>
+                        <%= ForecastIO.forecast(45.143994,-98.472006).currently[:summary] %></strong>
+                    </h4>
+                  </tr>
+              </table>
               <br>
-            <h4><a href="faqs">FAQs</a>
+              <hr width="75%">
+            <h4><a href="/admin">Admin</a>
               <br>
-            <a href="contact">Contact</a></h4>
+              <br>
           </td>
-
-
           <td valign="top">
               <%= yield %>
               <br>
@@ -63,8 +68,6 @@
         <td width="300px" valign="top">
         </td>
           <td valign="bottom">
-            <!-- <iframe id="forecast_embed" type="text/html" frameborder="0" height="245" width="75%" src="http://forecast.io/embed/#lat=45.143994&lon=-98.742006&name=The Lodge&color=#2196F3">
-            </iframe> -->
           </td>
         </tr>
     </table>

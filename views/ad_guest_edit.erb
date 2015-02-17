@@ -1,0 +1,23 @@
+<h2>Select the reservation / guest you'd like to edit:</h2>
+
+  <p>Select the reservation group name:<br>
+    <select name="reservation_id">
+      <% Reservation.all.each do |x| %>
+        <option value="<%= x.id %>"><%= x.name %>
+        </option>
+        @x.id = x.id
+      <% end %>
+    </select>
+
+<br>
+
+<% @guests.each do |guest| %>
+<%= if guest.reservation_id = @x.id %>
+  <tr>
+    <td><%= guest.id %></td>
+    <td><%= guest.name %></td>
+    <td><button onclick="details('<%= guest.display_attributes %>')">More Details</button></td>
+    <td><a href="/edit_guest?id=<%= guest.id %>">Edit</a></td>
+    <td><a href="/delete_guest?id=<%= guest.id %>">Delete</a></td>
+  </tr>
+  <% end %>

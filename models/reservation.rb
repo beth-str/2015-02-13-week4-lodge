@@ -29,6 +29,7 @@ class Reservation
   attr_accessor :name, :email, :address, :city, :state, :phone, :no_adults, :no_children, :arrrival_date, :departure_date, :comments, :status
 
   def initialize(options)
+    @id             = options["id"]
     @name           = options["name"]
     @email          = options["email"]
     @address        = options["address"]
@@ -81,7 +82,7 @@ end
     results = DATABASE.execute("SELECT * FROM reservations")
     @results_as_objects = []
       results.each do |r|
-        @results_as_objects << Product.new(r)
+        @results_as_objects << Reservation.new(r)
       end
       results_as_objects = @results_as_objects
       return results_as_objects

@@ -1,0 +1,21 @@
+<h2>Edit the guest information:</p>
+<form action="/edit_guest_confirm">
+  <p>First Name:<br>
+  <input type="text" required value="<%= @form_values.first_name %>" name="first_name"></p>
+
+  <p>Last Name:<br>
+  <input type="text" required value="<%= @form_values.last_name %>" name="last_name"></p>
+
+  <p>Age:<br>
+  <input type="text" required value="<%= @form_values.age %>" name="age"></p>
+
+  <p>Gender:<br>
+    <select value="<%= @form_values.gender %>" name="gender">
+    	<option value="---">---</option>
+    	<option value="female">female</option>
+    	<option value="male">male</option>
+    </select></p>
+
+  <input type="hidden" required value="<%= @form_values.id %>" name="id">
+  <input type="submit" value="Save Edits">
+</form>
