@@ -1,6 +1,5 @@
 <h2>Current Reservations:</h2>
-
-  <% @show_all = Resrvation.all %>
-  <% @show_all.each do |x| %>
-    <h4 class=indent><%= x.id %> - <%= x.name %>  by  <%= x.email %> (Arrival Date: $<%= x.arrival_date %> Arrival Date: $<%= x.departure_date %>)</h4>
+<br>
+  <% @reservations.each do |x| %>
+    <h4 class="indent-20"><%= x.id %>. <%= x.name %>  <%= x.email %> Arrival Date: <%= x.arrival_date %> Departure Date: <%= x.departure_date %> <%= x.status %></h4>
   <% end %>

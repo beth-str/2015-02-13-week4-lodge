@@ -1,23 +1,17 @@
-<h2>Select the reservation / guest you'd like to edit:</h2>
+<!-- Should only work for guests where reservation status is requested or approved. -->
 
-  <p>Select the reservation group name:<br>
-    <select name="reservation_id">
-      <% Reservation.all.each do |x| %>
-        <option value="<%= x.id %>"><%= x.name %>
-        </option>
-        @x.id = x.id
-      <% end %>
-    </select>
-
+<h2>Select the guest you'd like to edit:</h2>
 <br>
 
 <% @guests.each do |guest| %>
-<%= if guest.reservation_id = @x.id %>
 <table width="400px">
   <tr>
     <td width="50px"><%= guest.id %></td>
     <td width="100px"><%= guest.first_name %> <%= guest.last_name %></td>
     <td><a href="/edit_guest_form?id=<%= guest.id %>">Edit</a></td>
-  </tr></table>
-  <% end %>
+  </tr>
+</table>
 <% end %>
+
+
+

@@ -95,7 +95,7 @@ get '/admin/edit_reservation' do
 end
 
 get '/admin/edit_reservation_form' do
-  @form_values = Reservation.where_email_is(params[:email])
+  @form_values = Reservation.where_email_is(params)
   erb :ad_reservation_edit_form, :layout => :layout_back
 end
 
@@ -129,6 +129,7 @@ get '/admin/cancel_reservation_confirm' do
 end
 
 get '/admin/show_reservation' do
+  @reservations = Reservation.all
   erb :ad_reservation_show, :layout => :layout_back
 end
 
@@ -151,7 +152,7 @@ get '/admin/edit_guest' do
 end
 
 get '/admin/edit_guest_form' do
-  @form_values = Guest.where_id_is(params[:id])
+  @form_values = Guest.where_id_is(params)
   erb :ad_guest_edit_form, :layout => :layout_back
 end
 
@@ -183,7 +184,7 @@ end
 get "/admin/show_guest" do
   @results_as_objects = Reservation.all
   @guests = Guest.all 
-  erb :delete_guest_show, :layout => :layout_back
+  erb :ad_guest_show, :layout => :layout_back
 end
 
 

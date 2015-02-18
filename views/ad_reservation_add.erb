@@ -12,11 +12,9 @@
     </script>
 </head>
 
-<h2>Reservation Request</h2>
+<h2>New Reservation</h2>
+  <form action='/admin/add_reservation_confirm'>
 
-<p>Please fill out the form below. After reviewing your request, we will contact you to confirm your visit.</p>
-
-  <form action="/admin/add_reservation_confirm">
     <p>Group/Party Name:<br>
     <input type="text" style="font-size:14px" required class="longtextbox" name="name"></p>
 
@@ -30,7 +28,6 @@
     <input type="text" style="font-size:14px" required class="longtextbox" name="city"></p>
 
     <p>State:<br>
-    <form>
       <select name="state">
       	<option value="---">---</option>
       	<option value="AL">Alabama</option>
@@ -85,7 +82,6 @@
       	<option value="WI">Wisconsin</option>
       	<option value="WY">Wyoming</option>
       </select>
-    </form>
 
     <p>Phone (e.g., 6517775084):<br>
       <input type="text" style="font-size:14px" required name="phone"></p>
@@ -103,9 +99,8 @@
         <input type="text" style="font-size:14px" required id="departure_date" name="departure_date"></p> 
 
     <p>Any special considerations? (i.e., allergies, disabilities, etc.)<br>
-      <textarea rows="10" cols="50" style="font-size:14px" required name="comments">
-      </textarea></p>
+      <textarea rows="10" cols="50" style="font-size:14px" required name="comments"></textarea></p>
 
       <input type="hidden" required name="status" value="requested">
       <input type="submit">
-    </form>
+</form>

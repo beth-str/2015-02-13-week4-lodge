@@ -26,7 +26,7 @@
 #---------------------------------------------------------
 class Reservation
   attr_reader :id
-  attr_accessor :name, :email, :address, :city, :state, :phone, :no_adults, :no_children, :arrrival_date, :departure_date, :comments, :status
+  attr_accessor :name, :email, :address, :city, :state, :phone, :no_adults, :no_children, :arrival_date, :departure_date, :comments, :status
 
   def initialize(options)
     @id             = options["id"]
@@ -73,6 +73,37 @@ class Reservation
     status = '#{params[:status]}' WHERE id = #{params[:id]}")
     return true
 end
+
+
+
+  #---------------------------------------------------------
+    # Public: .where_email_is
+    # Searches the Reservation class for a single email address. 
+    #
+    # Parameter: String: email
+    #
+    # Returns: Single Reservation object with matching email (passed as argument)
+  #---------------------------------------------------------
+  def where_email_is(email)
+    x = DATABASE.execute("SELECT * FROM reservations WHERE email = '#{email}'")  
+      results = Reservation.new(params) 
+    return results
+  end
+
+    # Public: .where_id_is
+    # Searches the Reservation class for a single id.
+    #
+    # Parameter: Integer: id
+    #
+    # Returns: Single Reservation object with matching id (passed as argument)
+  #---------------------------------------------------------
+  def where_id_is(id)
+    x = DATABASE.execute("SELECT * FROM reservations WHERE id = #{id}")
+    results = Reservation.new(params)
+    return results
+  end
+
+
 
   #---------------------------------------------------------
   # Public: .all
