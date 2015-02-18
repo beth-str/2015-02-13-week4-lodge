@@ -84,10 +84,10 @@ end
     #
     # Returns: Single Reservation object with matching email (passed as argument)
   #---------------------------------------------------------
-  def where_email_is(email)
-    x = DATABASE.execute("SELECT * FROM reservations WHERE email = '#{email}'")  
-      results = Reservation.new(params) 
-    return results
+  def self.where_email_is(email)
+    results = DATABASE.execute("SELECT * FROM reservations WHERE email = '#{email}'")
+      results_as_object = Reservation.new(results[0]) 
+    return results_as_object
   end
 
     # Public: .where_id_is
@@ -97,8 +97,8 @@ end
     #
     # Returns: Single Reservation object with matching id (passed as argument)
   #---------------------------------------------------------
-  def where_id_is(id)
-    x = DATABASE.execute("SELECT * FROM reservations WHERE id = #{id}")
+  def self.where_id_is(id)
+    x = DATABASE.execute("SELECT * FROM reservations WHERE id = '#{id}'")
     results = Reservation.new(params)
     return results
   end

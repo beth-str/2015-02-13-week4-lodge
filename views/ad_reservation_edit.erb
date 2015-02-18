@@ -1,21 +1,21 @@
 <h2>Edit Reservations:</h2>
 <br>
-<table width="500px" valign="top">
+<table width="600px" valign="top">
   <tr>
-    <td width="150px" align="left"><strong>id. name:</strong></td>
-    <td width="130px" align="left"><strong>email:</strong></td>
+    <td width="200px" align="left"><strong>id. name:</strong></td>
+    <td width="150px" align="left"><strong>email:</strong></td>
     <td width="50px" align="left"><strong>Edit:</strong></td>
-    <td width="75px" align="left"><strong>Approve:</strong></td>
+    <td width="125px" align="left"><strong>Approve:</strong></td>
     <td width="65px" align="left"><strong>Status:</strong></td>
   </tr>
 
 <% @reservations.each do |reservation| %>
-<table width="500px" valign="top">
+<table width="600px" valign="top">
   <tr>
-    <td width="150px" align="left"><%= reservation.id %>. <%= reservation.name %></td>
-    <td width="130px" align="left"><%= reservation.email %></td>
+    <td width="200px" align="left"><%= reservation.id %>. <%= reservation.name %></td>
+    <td width="150px" align="left"><%= reservation.email %></td>
     <td width="50px" align="left"><a href="/admin/edit_reservation_form?email=<%= reservation.email %>">Edit</a></td>
-    <td width="75px" align="left"><a href="/admin/approve_reservation?id=<%= reservation.id %>">Approve</a></td>
+    <td width="125px" align="left"><a href="/admin/edit_reservation_status?email=<%= reservation.email %>">Update Status</a></td>
     <td width="65px" align="left"><%= reservation.status %></td>
   </tr>
   <% end %>

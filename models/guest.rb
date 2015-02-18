@@ -26,7 +26,7 @@ class Guest
     @last_name       = options["last_name"]
     @age             = options["age"]
     @gender          = options["gender"]
-    @reservation_id = options["reservation_id"]
+    @reservation_id  = options["reservation_id"]
   end
   
   #---------------------------------------------------------
@@ -43,13 +43,12 @@ class Guest
   # When changes are made to a Reservation object, this saves the changes to the database
   #---------------------------------------------------------
   def save(params)
-    DATABASE.execute("UPDATE guests SET 
-    first_name ='#{params[:first_name]}', 
-    last_name ='#{params[:last_name]}', 
+    DATABASE.execute("UPDATE guests SET
+    first_name = '#{params[:first_name]}', 
+    last_name = '#{params[:last_name]}', 
     age = #{params[:age]}, 
     gender = '#{params[:gender]}', 
-    reservation_id = #{params[:reservation_id]}' 
-    WHERE id = #{params[:id]}")
+    reservation_id = #{params[:reservation_id]}' WHERE id = #{params['id']}")
     return true
 end
 
@@ -61,13 +60,13 @@ end
 #
 # Returns: Single Guest object with matching id (passed as argument)
 #---------------------------------------------------------
-def where_id_is(id)
-  x = DATABASE.execute("SELECT * FROM guests WHERE id = #{id}")
-  results = Guest.new(params)
+def self.where_id_is(id)
+  x = DATABASE.execute("SELECT * FROM guests WHERE id = '#{id}'")
+  results = Guest.new(x[0])
   return results
 end
 
-  
+
   #---------------------------------------------------------
   # Public: .all
   # Displays all guests

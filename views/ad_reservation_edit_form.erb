@@ -35,7 +35,13 @@
   <input type="text" required value="<%= @form_values.comments %>" name="comments"></p>
 
   <p>Status:<br>
-  <input type="text" required value="<%= @form_values.status %>" name="status"></p>
+      <input type="radio" name="status" value="requested">Requested
+      <br>
+      <input type="radio" name="status" value="approved">Approved
+      <br>
+      <input type="radio" name="status" value="cancelled">Cancelled
+      <br>
+      <input type="radio" name="status" value="closed">Closed</p>
 
   <input type="hidden" required value="<%= @form_values.id %>" name="id">
   <input type="submit" value="Save Edits">

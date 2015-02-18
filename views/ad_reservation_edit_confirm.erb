@@ -1,8 +1,36 @@
-Edit to show new values saved in db
-
-
 <h2>Success!</h2>
 
-<p>Your reservation for <strong><%= params[:name] %></strong> has been submitted! After we review it, we will contact you at <strong><%= params[:email] %></strong> to confirm the details of your visit.</p>
-<p>If you have any questions or need to edit your reservation, please contact us at: <a href="mailto:info@thelodge.com">info@thelodge.com</a></p>
-<p><a href="/add_guest">Add a guest</a> to this reservation now!</p>
+<h4>Your edits for <strong><%= params[:name] %></strong> have been saved!</h4>
+
+  <table width="400px" valign="top">
+    <tr>
+      <td width="100px" align="right">
+        <p>ID:<br> 
+          Group Name:<br>
+          Email:<br>
+          City: <br>
+          State: <br>
+          Phone: <br>
+          # Adults: <br>
+          # Children: <br>
+          Arrival: <br>
+          Departure: <br>
+          Status:</p>
+      </td> 
+      <td width="3px">
+      </td>
+      <td width="250px">
+        <p><strong><%= params[:id] %><br> 
+          <%= params[:name] %><br>
+          <%= params[:email] %><br>
+          <%= params[:city] %><br>
+          <%= params[:state] %><br>
+          <%= params[:phone] %><br>
+          <%= params[:no_adults] %><br>
+          <%= params[:no_children] %><br>
+          <%= params[:arrival_date] %><br>
+          <%= params[:departure_date] %><br>
+          <%= params[:status] %></strong></p>
+      </td> 
+    </tr>
+  </table>

@@ -1,18 +1,2 @@
-<h2 font-size="12px">Warning: If products are assigned to this genre, it cannot be deleted.</h2>
-
-<h3>Current Genres:</h3>
-  <% @results_as_objects.each do |x| %>
-    <h4 class="indent"><%= x.id %>. <%= x.genre %>
-    </h4>
-  <% end %>
-
-<hr>
-
-<form action="/delete_genre_confirm">
-  <p>Enter the id of the genre to be deleted:
-  </p>
-  <p>Category ID:<br>
-    <input type="text" required name="id">
-  </p>
-  <input type="submit">
-</form>
+<h2>Reservations cannot be deleted.</h2>
+<p>Do you want to <a href="/admin/reservation_status">cancel a reservation</a>?</p>

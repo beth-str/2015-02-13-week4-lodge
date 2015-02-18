@@ -1,0 +1,37 @@
+<h2>Please select the new status for this reservation:</h2>
+
+
+  
+<form action="/admin/edit_reservation_confirm">
+  <p>Group Name: <%= @form_values.name %><br>
+    Current Status: <%= @form_values.status %></p>
+    <p>Status:<br>
+      <select name="status" value="<%= @form_values.status %>">
+      	<option value="---">---</option>
+      	<option value="requested">Requested</option>
+      	<option value="approved">Approved</option>
+      	<option value="cancelled">Cancelled</option>
+      	<option value="closed">Closed</option>
+        </select>
+    </p>
+
+  <input type="hidden" required value="<%= @form_values.id %>" name="id">
+  <input type="hidden" required value="<%= @form_values.name %>" name="name">
+  <input type="hidden" required value="<%= @form_values.email %>" name="email">
+  <input type="hidden" required value="<%= @form_values.address %>" name="address">
+  <input type="hidden" required value="<%= @form_values.city %>" name="city">
+  <input type="hidden" required value="<%= @form_values.state %>" name="state">
+  <input type="hidden" required value="<%= @form_values.phone %>" name="phone">
+  <input type="hidden" required value="<%= @form_values.no_adults %>" name="no_adults">
+  <input type="hidden" required value="<%= @form_values.no_children %>" name="no_children">
+  <input type="hidden" required value="<%= @form_values.arrival_date %>" name="arrival_date">
+  <input type="hidden" required value="<%= @form_values.departure_date %>" name="departure_date">
+  <input type="hidden" required value="<%= @form_values.comments %>" name="comments">
+
+
+
+
+
+  <input type="submit" value="Save Status">
+
+</form>

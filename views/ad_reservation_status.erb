@@ -1,0 +1,23 @@
+<p>Review these reservation requests. </p>
+  <h4 class="indent-20">Requested = not yet approved <br>
+  Approved = guest has been notified, dates confirmed <br>
+  Cancelled = reservation cancelled <br>
+  Closed = visit completed, no longer pending</h4>
+<br>
+
+<table width="400px">
+  <tr>
+      <td width="200px"><strong>id. Name</strong></td>
+      <td width="100px"><strong>Status</strong></td>
+      <td width="125px"><strong>Click to Edit</strong></td>
+  </tr>
+</table>
+<table width="400px">
+<% Reservation.all.each do |x| %>
+  <tr>
+      <td width="200px"><%= x.id %>. <%= x.name %></td>
+      <td width="100px"><%= x.status %></td>
+      <td width="125px"><a href="/admin/edit_reservation_status?email=<%= x.email %>">Edit Status</a></td>
+  </tr>
+<% end %>
+</table>

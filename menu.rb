@@ -95,7 +95,7 @@ get '/admin/edit_reservation' do
 end
 
 get '/admin/edit_reservation_form' do
-  @form_values = Reservation.where_email_is(params)
+  @form_values = Reservation.where_email_is(params[:email])
   erb :ad_reservation_edit_form, :layout => :layout_back
 end
 
@@ -105,27 +105,21 @@ get '/admin/edit_reservation_confirm' do
   erb :ad_reservation_edit_confirm, :layout => :layout_back
 end
 
-get '/admin/approve_reservation' do
-  erb :ad_reservation_approve, :layout => :layout_back
+get '/admin/reservation_status' do
+  erb :ad_reservation_status, :layout => :layout_back
+end
+
+get '/admin/edit_reservation_status' do
+  @form_values = Reservation.where_email_is(params[:email])
+  erb :ad_reservation_status_edit, :layout => :layout_back
 end
 
 get '/admin/delete_reservation' do
   erb :ad_reservation_delete, :layout => :layout_back
 end
 
-get '/admin/delete_reservation_confirm' do
-  Reservation.delete(params["email"])
-  erb :ad_reservation_delete_confirm, :layout => :layout_back
-end
-
 get '/admin/cancel_reservation' do
-  erb :ad_reservation_cancel, :layout => :layout_back
-end
-
-get '/admin/cancel_reservation_confirm' do
-  x = Reservation.new(params)
-  x.save(params)
-  erb :ad_reservation_cancel_confirm, :layout => :layout_back
+  erb :ad_reservation_status, :layout => :layout_back
 end
 
 get '/admin/show_reservation' do
@@ -152,7 +146,7 @@ get '/admin/edit_guest' do
 end
 
 get '/admin/edit_guest_form' do
-  @form_values = Guest.where_id_is(params)
+  @form_values = Guest.where_id_is(params[:id])
   erb :ad_guest_edit_form, :layout => :layout_back
 end
 
@@ -161,24 +155,6 @@ get '/admin/edit_guest_confirm' do
   x.save(params)
   @x = x
   erb :ad_guest_edit_confirm, :layout => :layout_back
-end
-
-get '/admin/delete_guest' do
-  @results_as_objects = Guest.all
-  erb :ad_guest_delete, :layout => :layout_back
-end
-
-before "/admin/delete_guest_confirm" do
-  @guests = Guest.where_reservation_id_is(params[:id].to_i)
-  if @guests != []
-    request.path_info = "/error"
-  end
-end
-
-get "/admin/delete_guest_confirm" do
-  @id = params[:id]
-  Guest.delete(params[:id])
-  erb :ad_guest_delete_confirm, :layout => :layout_back
 end
 
 get "/admin/show_guest" do

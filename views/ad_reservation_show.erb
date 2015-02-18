@@ -1,5 +1,26 @@
 <h2>Current Reservations:</h2>
+
 <br>
-  <% @reservations.each do |x| %>
-    <h4 class="indent-20"><%= x.id %>. <%= x.name %>  <%= x.email %> Arrival Date: <%= x.arrival_date %> Departure Date: <%= x.departure_date %> <%= x.status %></h4>
+<table width="700px" valign="top">
+  <tr>
+    <td width="50px" align="center"></td>
+    <td width="225px" align="center"><strong>id. name:</strong></td>
+    <td width="190px" align="center"><strong>email:</strong></td>
+    <td width="100px" align="center"><strong>Arrival:</strong></td>
+    <td width="100px" align="center"><strong>Departure:</strong></td>
+    <td width="5px"></td>
+    <td width="75px" align="center"><strong>Status:</strong></td>
+  </tr>
+
+<% @reservations.each do |reservation| %>
+<table width="700px" valign="top">
+  <tr>
+    <td width="50px" align="left"><a href="/admin/edit_reservation_form?email=<%= reservation.email %>">Edit</a></td>
+    <td width="225px" align="left"><%= reservation.id %>. <%= reservation.name %></td>
+    <td width="190px"><%= reservation.email %></td>
+    <td width="100px" align="right"><%= reservation.arrival_date %></td>
+    <td width="100px" align="right"><%= reservation.departure_date %></td>
+    <td width="5px"></td>
+    <td width="75px" align="left"><%= reservation.status %></td>
+  </tr>
   <% end %>

@@ -1,8 +1,28 @@
 <h2>Success!</h2>
 
-<h4>Edited Guest:</h4>
-<hr>
-<p>First Name: <%= @x.first_name %></p>
-<p>Last Name: <%= @x.last_name %></p>
-<p>Age: <%= @x.age %></p>
-<p>Gender: <%= @x.gender %></p>
+<h4>Your edits for <strong><%= params[:first_name] %> <%= params[:last_name] %></strong> have been saved!</h4>
+
+  <table width="400px" valign="top">
+    <tr>
+      <td width="100px" align="right">
+        <p>ID:<br> 
+          First Name:<br>
+          Last Name:<br>
+          Age: <br>
+          Gender: <br>
+          Reservation ID: <br>
+      </td> 
+      <td width="3px">
+      </td>
+      <td width="250px">
+        <p><strong>
+          <%= params[:id] %><br> 
+          <%= params[:first_name] %><br>
+          <%= params[:last_name] %><br>
+          <%= params[:age] %><br>
+          <%= params[:gender] %><br>
+          <%= params[:reservation_id] %><br>
+            </strong></p>
+      </td> 
+    </tr>
+  </table>
