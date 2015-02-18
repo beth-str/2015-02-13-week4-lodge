@@ -14,6 +14,7 @@
 #---------------------------------------------------------
 
 class Activity
+  include LodgeHelper
   attr_reader :id
   attr_accessor :name, :limit
   

@@ -115,9 +115,10 @@ end
    # State changes:
    # creates a new row in table for each attribute of the object.
   
-  def display_attributes
+  def display_attributes(id)
+    x = Reservation.where_id_is(id)
        attributes = []
-       instance_variables.each do |i|
+       x.instance_variables.each do |i|
          # Example  :@name
          attributes << i.to_s.delete("@")
        end

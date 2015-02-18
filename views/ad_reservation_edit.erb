@@ -1,11 +1,11 @@
-<%@reservations.each do |reservation|%>
+<% @reservations.each do |reservation| %>
+<table width="400px">
   <tr>
-    <td><%= reservation.id %></td>
-    <td><%= reservation.name %></td>
-    <td><%= reservation.status %></td>
-    <td><%= reservation.email %></td>
-    <td><button onclick="details('<%= reservation.display_attributes %>')">More Details</button></td>
-    <td><a href="/admin/edit_reservation?id=<%= reservation.id %>">Edit</a></td>
-    <td><a href="/admin/approve_reservation?id=<%= reservation.id %>">Approve</a></td>
+    <td width="50px"><%= reservation.id %></td>
+    <td width="100px"><%= reservation.name %></td>
+    <td width="50px"><%= reservation.status %></td>
+    <td width="100px"><%= reservation.email %></td>
+    <td width="50px"><a href="/admin/edit_reservation_form?email=<%= reservation.email %>">Edit</a></td>
+    <td width="50px"><a href="/admin/approve_reservation?id=<%= reservation.id %>">Approve</a></td>
   </tr>
   <%end%>
