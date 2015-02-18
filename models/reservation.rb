@@ -14,7 +14,7 @@
 # @arrival_date   - String: the arrival date
 # @departure_date - String: the departure date
 # @comments       - String: add'l information
-# @status         - Text: reservation status: requested, approved, cancelled
+# @status         - Text: reservation status: requested, approved, cancelled, closed
 #
 # Public Methods:
 # #insert

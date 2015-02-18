@@ -13,6 +13,7 @@ require_relative "models/activity.rb"
 require_relative "models/reservation.rb"
 require_relative "models/guest.rb"
 
+
 DATABASE.results_as_hash = true
 
 
@@ -125,6 +126,10 @@ end
 get '/admin/show_reservation' do
   @reservations = Reservation.all
   erb :ad_reservation_show, :layout => :layout_back
+end
+
+get '/admin/calendar_show' do
+  erb :ad_calendar_show, :layout => :layout_back
 end
 
 

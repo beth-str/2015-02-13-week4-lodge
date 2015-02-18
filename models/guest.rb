@@ -40,17 +40,19 @@ class Guest
 
   #---------------------------------------------------------
   # Public: #save
-  # When changes are made to a Reservation object, this saves the changes to the database
+  # When changes are made to a Guest object, this saves the changes to the database
   #---------------------------------------------------------
   def save(params)
-    DATABASE.execute("UPDATE guests SET
+    DATABASE.execute("UPDATE guests SET 
     first_name = '#{params[:first_name]}', 
     last_name = '#{params[:last_name]}', 
     age = #{params[:age]}, 
     gender = '#{params[:gender]}', 
-    reservation_id = #{params[:reservation_id]}' WHERE id = #{params['id']}")
+    reservation_id = #{params[:reservation_id]} 
+    WHERE id = #{params[:id]}")
     return true
-end
+  end
+
 
 #---------------------------------------------------------
 # Public: .where_id_is
