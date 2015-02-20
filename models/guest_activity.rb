@@ -33,9 +33,8 @@ class GuestActivity
     @results_as_objects = []
       results.each do |r|
         @results_as_objects << GuestActivity.new(r)
-        guest_activity = @results_as_objects
-      return guest_activity
-    end
+      end
+    return @results_as_objects
   end
 
 end

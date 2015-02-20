@@ -1,26 +1,27 @@
+
 require 'sinatra'
 require 'google_calendar_oauth2'
 require 'pry'
-
-client = GoogleCalendar::Client.new "212643930905-2g9plm4m8kk8fk2prqs4ojf51p16ke7v.apps.googleusercontent.com", "iTLIjzSm5cNzVwuH8FCPnhTD", "http://localhost:4567/oauth2callback"
-
-before do
-  unless GoogleCalendar.connection.authorization.access_token || request.path_info =~ /^\/oauth2/
-    redirect client.redirect_to
-  end 
-end
-
-get '/oauth2callback' do
-  GoogleCalendar.connection.authorization.code = params['code']
-  GoogleCalendar.connection.authorization.fetch_access_token!
-  redirect '/create_event'
-end
-
-get '/create_event' do
-  binding.pry
-  params
-  erb :'../views/x'  
-end
+#
+# client = GoogleCalendar::Client.new "212643930905-2g9plm4m8kk8fk2prqs4ojf51p16ke7v.apps.googleusercontent.com", "iTLIjzSm5cNzVwuH8FCPnhTD", "http://localhost:4567/oauth2callback"
+#
+# before do
+#   unless GoogleCalendar.connection.authorization.access_token || request.path_info =~ /^\/oauth2/
+#     redirect client.redirect_to
+#   end
+# end
+#
+# get '/oauth2callback' do
+#   GoogleCalendar.connection.authorization.code = params['code']
+#   GoogleCalendar.connection.authorization.fetch_access_token!
+#   redirect '/create_event'
+# end
+#
+# get '/create_event' do
+#   binding.pry
+#   params
+#   erb :'../views/x'
+# end
 
 # Create your Gemfile with the following.
 
@@ -36,7 +37,7 @@ end
 # Calendar
 # Find a Calendar
 #
-# calendar = GoogleCalendar::Calendar.find_by_name('Calendar Name')
+calendar = GoogleCalendar::Calendar.find_by_name('The Lodge')
 # List your Calendars
 #
 # calendars = GoogleCalendar::Calendar.list
@@ -46,7 +47,8 @@ end
 # Event
 # Find an event
 #
-# GoogleCalendar::Event.find_by_name(calendar.id, 'some event name')
+
+GoogleCalendar::Event.find_by_name(calendar.id, 'some event name')
 # List events for a calendar
 #
 # events = GoogleCalendar::Event.list(calendar.id)

@@ -70,6 +70,14 @@ get "/guest_confirm" do
   erb :new_guest_confirm
 end
 
+get "/contact" do
+  erb :contact
+end
+
+get "/contact_confirm" do
+  erb :contact_confirm
+end
+
 
 #------------ADMIN (PRIVATE)-----------
 #-------------RESERVATIONS-------------
@@ -133,7 +141,6 @@ end
 get '/admin/show_activities' do
   @reservations = Reservation.all
   @guest_activity = GuestActivity.show_guests_activities
-  binding.pry
   erb :ad_activity_show, :layout => :layout_back
 end
 

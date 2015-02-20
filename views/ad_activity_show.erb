@@ -7,11 +7,7 @@
     <td width="200px" align="center"><strong>Activity:</strong></td>
   </tr>
 </table>
-<% @reservations.each do |y| %>
-  <% if y.status == "requested" || y.status == "approved" %> 
-  <strong><%= y.name %></strong> 
-    <% @guest_activity.each do |x| %>
-  <% if x.reservation_id == y.id %> 
+    <% @guest_activity.reservation_id.each do |x| %>
       <table width="500px" valign="top">
         <tr>
           <td width="200px" align="left">
@@ -23,6 +19,3 @@
         </tr>
       </table>
     <% end %>
-    <% end %>
-  <% end %>
-<% end %>
