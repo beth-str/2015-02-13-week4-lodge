@@ -4,8 +4,8 @@ require 'sqlite3'
 require 'coffee-script'
 require 'v8'
 require 'forecast_io'
-require 'rubygems'
 require 'google_calendar'
+require 'google_calendar_oauth2'
 DATABASE = SQLite3::Database.new("database/lodge.db")
 require_relative "module.rb"
 require_relative "models/db_setup.rb"
@@ -133,6 +133,7 @@ end
 get '/admin/show_activities' do
   @reservations = Reservation.all
   @guest_activity = GuestActivity.show_guests_activities
+  binding.pry
   erb :ad_activity_show, :layout => :layout_back
 end
 

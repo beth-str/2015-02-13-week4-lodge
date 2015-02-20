@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'google_calendar'
+require 'pry'
 
 # Create an instance of the calendar.
 cal = Google::Calendar.new(:client_id => '212643930905-2g9plm4m8kk8fk2prqs4ojf51p16ke7v.apps.googleusercontent.com', :client_secret => 'iTLIjzSm5cNzVwuH8FCPnhTD', :calendar => 'ld27870tkt6dmn85ksm6kibrrg@group.calendar.google.com', :redirect_url  => 'http://127.0.0.1:4567/')
@@ -16,7 +17,9 @@ cal = Google::Calendar.new(:client_id => '212643930905-2g9plm4m8kk8fk2prqs4ojf51
    puts "\nCopy the code that Google returned and paste it here:"
 
    # Pass the ONE TIME USE access code here to login and get a refresh token that you can use for access from now on.
-   refresh_token = cal.login_with_auth_code( $stdin.gets.chomp )
+    code = $stdin.gets.chomp   
+    binding.pry
+   refresh_token = cal.login_with_auth_code( code )
 
    puts "\nMake sure you SAVE YOUR REFRESH TOKEN so you don't have to prompt the user to approve access again."
    puts "your refresh token is:\n\t#{refresh_token}\n"
