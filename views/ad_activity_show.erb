@@ -1,0 +1,28 @@
+<h2>Guest Activities:</h2>
+
+<table width="500px" valign="top">
+  <tr>
+    <td width="200px" align="center"><strong>Guest Name:</strong></td>
+    <td width="50px" align="center"><strong>Age:</strong></td>
+    <td width="200px" align="center"><strong>Activity:</strong></td>
+  </tr>
+</table>
+<% @reservations.each do |y| %>
+  <% if y.status == "requested" || y.status == "approved" %> 
+  <strong><%= y.name %></strong> 
+    <% @guest_activity.each do |x| %>
+  <% if x.reservation_id == y.id %> 
+      <table width="500px" valign="top">
+        <tr>
+          <td width="200px" align="left">
+            <%= x.first_name %> <%= x.last_name %></td>
+          <td width="50px">
+            <%= x.age %></td>
+          <td width="200px" align="right">
+            <%= x.name %></td>
+        </tr>
+      </table>
+    <% end %>
+    <% end %>
+  <% end %>
+<% end %>

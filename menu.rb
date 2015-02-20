@@ -12,6 +12,8 @@ require_relative "models/db_setup.rb"
 require_relative "models/activity.rb"
 require_relative "models/reservation.rb"
 require_relative "models/guest.rb"
+require_relative "models/guest_activity.rb"
+
 
 
 DATABASE.results_as_hash = true
@@ -24,7 +26,7 @@ get "/" do
 end
 
 get "/about" do
-  erb :hosts
+  erb :about
 end
 
 get "/activities" do
@@ -128,6 +130,12 @@ get '/admin/show_reservation' do
   erb :ad_reservation_show, :layout => :layout_back
 end
 
+get '/admin/show_activities' do
+  @reservations = Reservation.all
+  @guest_activity = GuestActivity.show_guests_activities
+  erb :ad_activity_show, :layout => :layout_back
+end
+
 get '/admin/calendar_show' do
   erb :ad_calendar_show, :layout => :layout_back
 end
@@ -168,11 +176,10 @@ get "/admin/show_guest" do
   erb :ad_guest_show, :layout => :layout_back
 end
 
-
 not_found do
   erb :not_found
 end
 
 get "/error" do
-erb :error
+  erb :error
 end

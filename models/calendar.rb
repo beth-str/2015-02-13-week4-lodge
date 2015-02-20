@@ -1,9 +1,9 @@
+require 'rubygems'
+require 'google_calendar'
+
 # Create an instance of the calendar.
- cal = Google::Calendar.new(:client_id     => YOUR_CLIENT_ID, 
-                            :client_secret => YOUR_SECRET,
-                            :calendar      => YOUR_CALENDAR_ID,
-                            :redirect_url  => "urn:ietf:wg:oauth:2.0:oob" # this is what Google uses for 'applications'
-                            )
+cal = Google::Calendar.new(:client_id => '212643930905-2g9plm4m8kk8fk2prqs4ojf51p16ke7v.apps.googleusercontent.com', :client_secret => 'iTLIjzSm5cNzVwuH8FCPnhTD', :calendar => 'ld27870tkt6dmn85ksm6kibrrg@group.calendar.google.com', :redirect_url  => 'http://127.0.0.1:4567/')
+# urn:ietf:wg:oauth:2.0:oob
 
  puts "Do you already have a refresh token? (y/n)"
  has_token = $stdin.gets.chomp
@@ -32,24 +32,24 @@
    # Note: You can also pass your refresh_token to the constructor and it will login at that time.
 
  end
-
- event = cal.create_event do |e|
-   e.title = 'A Cool Event'
-   e.start_time = Time.now
-   e.end_time = Time.now + (60 * 60) # seconds * min
- end
-
- puts event
-
- event = cal.find_or_create_event_by_id(event.id) do |e|
-   e.title = 'An Updated Cool Event'
-   e.end_time = Time.now + (60 * 60 * 2) # seconds * min * hours
- end
-
- puts event
-
+ #
+ # event = cal.create_event do |e|
+ #   e.title = 'A Cool Event'
+ #   e.start_time = Time.now
+ #   e.end_time = Time.now + (60 * 60) # seconds * min
+ # end
+ #
+ # puts event
+ #
+ # event = cal.find_or_create_event_by_id(event.id) do |e|
+ #   e.title = 'An Updated Cool Event'
+ #   e.end_time = Time.now + (60 * 60 * 2) # seconds * min * hours
+ # end
+ #
+ # puts event
+ #
  # All events
  puts cal.events
 
  # Query events
- puts cal.find_events('your search string')
+ # puts cal.find_events('your search string')
