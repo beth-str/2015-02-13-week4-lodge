@@ -1,0 +1,138 @@
+/** Floatbox colorTheme:custom **/
+
+/* overlayColor */
+#fbx.fbx .fbOverlay_custom {
+	background-color: #1b2642;
+/* 	background-image: url(graphics/blank.gif);  /* custom background image for the transparent page overlay */
+}
+
+/* boxColor */
+#fbx.fbx .fbBackground_custom, #fbx.fbx .fbEdge_custom, #fbx.fbx .fbInnerEdge_custom {
+	background-color: #eed39e;
+}
+
+/* outerBorderColor */
+#fbx.fbx .fbEdge_custom, #fbx.fbx .fbInnerEdge_custom {
+	border-color: #da7b4d;
+}
+
+/* innerBorderColor */
+#fbx.fbx .fbContentWrapper_custom {
+	border-color: #b64;
+}
+
+/* textColor */
+#fbx.fbx .fbItemNumber_custom, #fbx.fbx .fbIndexLinks_custom, #fbx.fbx .fbNewWindowLink_custom {
+	color: #555;
+	border-color: #000;  /* strongTextColor captured for mouseover changes */
+}
+
+/* strongTextColor */
+#fbx.fbx .fbCaption_custom, #fbx.fbx .fbCaption2_custom,
+#fbx.fbx .fbInfoLink_custom, #fbx.fbx .fbPrintLink_custom {
+	color: #000;
+}
+
+/* animated 'loading' graphic */
+#fbx.fbx .fbLoader_custom {
+	background-image: url(graphics/custom/loader_small.gif);
+}
+
+/* resize button graphic in the top left corner */
+/* note: if you want the smaller resize button, change #fbx .fbResizer width and height to 19px below */
+/* and also add "_small" to the resize gif name (e.g., graphics/custom/resizer_small.gif) */
+#fbx.fbx .fbResizer_custom {
+	background-image: url(graphics/custom/resizer.gif);
+}
+
+/* resize dragger in the lower right corner */
+#fbx.fbx .fbDragger_custom {
+	background-image: url(graphics/custom/dragger.gif);
+}
+
+/* overlay nav graphics */
+#fbx.fbx .fbOverlayPrev_custom {
+	background-image: url(graphics/custom/overlayPrev.gif);
+}
+#fbx.fbx .fbOverlayNext_custom {
+	background-image: url(graphics/custom/overlayNext.gif);
+}
+
+/* 'prev' and 'next' nav graphics */
+#fbx.fbx .fbPrev_custom {
+	background-image: url(graphics/custom/prev_on.png);
+}
+#fbx.fbx .fbNext_custom {
+	background-image: url(graphics/custom/next_on.png);
+}
+
+/* 'play' and 'pause' graphics */
+#fbx.fbx .fbPlay_custom {
+	background-image: url(graphics/custom/play.png);
+}
+#fbx.fbx .fbPause_custom {
+	background-image: url(graphics/custom/pause.png);
+}
+
+/* 'close' and 'outerClose' graphics */
+#fbx.fbx .fbClose_custom {
+	background-image: url(graphics/custom/close.png);
+}
+#fbx.fbx .fbOuterClose_custom {
+	background-image: url(graphics/custom/outerClose.png);
+}
+
+/* newWindowLink image */
+#fbx.fbx .fbNewWindowLink_custom a {
+	background-image: url(graphics/custom/newWindow_off.png);
+}
+#fbx.fbx .fbNewWindowLink_custom a:hover, #fbx.fbx .fbNewWindowLink_custom a:focus {
+	background-image: url(graphics/custom/newWindow_on.png);
+}
+
+
+/** Size adjustments for custom background graphics **/
+
+#fbx .fbControls_custom {
+	height: 14px;  /* all the controls (prev|next, play|pause, close) should be the same height */
+}
+
+#fbx .fbNavControls_custom {
+	width: 88px;  /* sum of prev and next widths */
+	height: 14px;
+}
+
+#fbx .fbPrev_custom {  /* prev nav control */
+	width: 44px;
+	height: 14px;
+}
+
+#fbx .fbNext_custom {  /* next nav control */
+	width: 44px;
+	height: 14px;
+}
+
+#fbx .fbPlayPause_custom, #fbx .fbPlay_custom, #fbx .fbPause_custom {  /* slideshow controls - play and pause need to be the same size */
+	width: 46px;
+	height: 14px;
+}
+
+#fbx .fbClose_custom {  /* the close button */
+	width: 46px;
+	height: 14px;
+}
+
+#fbx .fbOuterClose_custom {  /* the round outer close button */
+	width: 27px;
+	height: 27px;
+}
+
+#fbx .fbResizer_custom {  /* resizer widget in the top-left corner */
+	width: 25px;
+	height: 25px;
+}
+
+#fbx .fbDragger_custom {  /* dragger widget in the bottom-right corner */
+	width: 12px;
+	height: 12px;
+}

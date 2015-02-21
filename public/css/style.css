@@ -1,0 +1,154 @@
+#masthead {
+  background-repeat: no-repeat;
+  background-size: 100%;
+  }
+
+#background {
+  width: 100%; 
+  height: 100%; 
+  position: fixed; 
+  left: 0px; 
+  top: 0px; 
+  z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
+  }
+
+.stretch {
+  width: 100%;
+  }
+
+.blue {
+	color: #1976D2;
+  }
+  
+.vspace {
+  line-height: 125%;  
+  }  
+
+.right {
+  align: right;  
+  }  
+  
+.image-wrapper { 
+  position: relative; 
+} 
+
+.image-wrapper h1 { 
+  font: helvetica;
+  font-size: 40px;
+  letter-spacing: .75pt;
+  position: absolute; 
+  left: 20; 
+  top: 0; 
+  padding: 20px; 
+  color: #FFF; 
+  margin: 5px; 
+  border-top: none;
+}
+
+.longtextbox {
+  width: 200px
+}
+
+.largetextbox {
+  width: 400px; 
+  height: 80px
+}
+
+/*  font-family: helvetica, tahoma, verdana;*/
+
+body {
+	margin: 100;
+	padding: 50;
+}
+
+h1 {
+	font-size: 30px;
+	margin: 4px, 0px, 6px, 0px; 
+  line-height: 36px;
+	color: #BBDEFB;
+	border-top: 2px solid #BBDEFB;
+  }
+
+h2 {
+	font-size: 28px;
+	font-weight: normal;
+  font: georgia, sans-serif;
+	margin-bottom: 6px; 
+	color: #1976D2;
+  }
+
+h3 { 
+	font-size: 20px; 
+  font-style: italic;
+  letter-spacing: .5pt;
+	margin-bottom: -12px; 
+  font: Helvetica;
+	color: #727272;
+}
+
+h4 {
+  font: 14px verdana, sans-serif;
+  color: #727272;
+  line-height: 18px;
+  }
+
+blockquote { 
+	font-size: 16px; 
+  font-style: italic;
+  line-height: 20px;
+  letter-spacing: .5pt;
+  font: georgia, sans-serif;
+	margin: 6px, 10px, 0px 10px; 
+	color: #727272;
+  text-align: justify;
+	}
+
+p {
+  font: 14px verdana, sans-serif;
+  line-height: 20px;
+  color: #212121;
+  }
+
+li {
+  font: 14px verdana, sans-serif;
+  line-height: 20px;
+  color: #212121;
+  }
+
+a {
+  font: verdana, sans-serif;
+  color: #1976D2;
+  text-decoration: underline;
+  }
+
+a:hover {
+  background-color: yellow;
+  }
+  
+footer {
+  font: 12px verdana, sans-serif;
+  color: #333333;
+  height: 100%;
+  }
+
+.r-box {
+  background-color: #666;
+  color: #B6B6B6;
+  line-height: 20px;
+  width: 200px;
+  padding: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  }
+
+.indent-20 {
+	margin: 0px 0px 2px 20px; 
+  }
+
+.indent-40 {
+	margin: 0px 0px 0px 40px; 
+  }
+
+.indent-60 {
+	margin: 0px 0px 0px 40px; 
+  }

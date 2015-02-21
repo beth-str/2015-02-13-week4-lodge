@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html style="background-color:#00000;" lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Floatbox Video Player</title>
+<script src="floatbox.js"></script>
+
+<style>
+html, body, #container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	border-width: 0;
+	background-color: #000000;
+}
+p {
+	background-color: #fffacd;
+	width: 60%;
+	text-align: center;
+	margin: 24px auto;
+	padding: 16px;
+}
+</style>
+
+</head>
+<body>
+<div id="container"></div>
+
+<script>
+(function () {
+
+	var params = fb.deserialize( location.search.substring( 1 ) ),
+		autoEnd = params.autoend != '0',
+		mp4Source = params.source,
+		webmSource = mp4Source.replace( /\.mp4\b/i, '.webm' ),
+		posterSource = params.poster || mp4Source.replace( /\.mp4\b/i, '.jpg' ),
+		canPlayWebm = canPlay( 'webm' ),  // Chrome, Firefox 4.0+, Opera 10.6+, IE 9+ with webmmf installed
+		canPlayMp4 = canPlay( 'mp4' ),  // IE 9+, Safari 3.1+, Firefox 4.0+, Chrome but problematic on some hardware
+// 		canPlayOgg = canPlay( 'ogg' ),  // Chrome, Firefox 3.5+, Opera 10.5+
+		$container = fb.$( 'container' ),
+		$style = $container.style,
+		handlers = [],
+		videoAttributes;
+
+	delete params.autoend;
+	delete params.source;
+	delete params.poster;
+	delete params.postMessage;
+	params.bgcolor = params.bgcolor || 'transparent';
+	$style.backgroundColor = params.bgcolor;
+
+	if ( 'ontouchstart' in document ) {  // mobile devices won't autoPlay, show the poster
+		fb.preload( posterSource, function ( img ) {
+			videoAttributes = 'preload="none"' + ( img.ok ? ' poster="' + img.src + '"' : '' );
+			buildPlayer();
+		} );
+	} else {
+		videoAttributes = 'preload="metadata" onloadedmetadata="this.play()"';
+		buildPlayer();
+	}
+
+	function buildPlayer () {
+		var videoTag = '<video id="fbPlayer" controls width="100%" height="100%" ' + videoAttributes + ' src="',
+			videoEndTag = '"></video>';
+		fb.removeEvent( handlers );  // remove previously assigned event handlers
+		handlers = [];
+		$container.innerHTML = '';
+
+		if ( canPlayWebm ) {  // preferred because Chrome has trouble with mp4 hardware acceleration on some video cards
+			$container.innerHTML = videoTag + webmSource + videoEndTag;
+		}
+		else if ( canPlayMp4 ) {
+			$container.innerHTML = videoTag + mp4Source + videoEndTag;
+		}
+
+		else {  // Flash fallback
+			document.body.style.background = 'url(graphics/black/loader.gif) no-repeat center';
+			$style.width = $style.height = '0';  // hide white/green screen at startup
+			params.config = '{"playerId":"fbPlayer","clip":{"url":"' + mp4Source + '"}}';
+			fb.flashObject( {
+// 			source: '//releases.flowplayer.org/swf/flowplayer-3.2.18.swf',
+			source: '//cdn.jsdelivr.net/flowplayer/3.2.15/flowplayer-3.2.15.swf',
+				width: '100%',
+				height: '100%',
+				node: 'container',
+				id: 'fbPlayer',
+				params: params,
+				failure: showContainer,
+				altContent: '<p>' +
+					'Uh-oh. Your browser is unable to play this video.<br />' +
+					'Please right-click <a href="' + mp4Source + '">this link</a> ' +
+					'to download the video for offline viewing with a standalone player.' +
+					'</p>'
+			} );
+			window.flowplayer = {  // minimal flowplayer object for receiving events
+				fireEvent: function ( id, type ) {
+					if ( type == 'onBegin' ) {
+						setTimeout( showContainer, 160 );
+					}
+					if ( autoEnd && type == 'onFinish' ) {
+						$style.width = $style.height = '0';
+						fb.end();
+					}
+				}
+			};
+		}
+
+		if ( !window.flowplayer ) {  // not Flash
+			handlers.push( fb.addEvent( 'fbPlayer', 'error', function () {
+				if ( canPlayWebm ) {
+					canPlayWebm = false;
+				}
+				else {
+					canPlayMp4 = false;
+				}
+				buildPlayer();
+			} ) );
+			if ( autoEnd ) {
+				handlers.push( fb.addEvent( 'fbPlayer', 'ended', function () {
+					fb.removeEvent( handlers );
+					fb.end();
+				} ) );
+			}
+		}
+	}
+
+	function canPlay ( type ) {
+		var $checker = document.createElement( 'video' );
+		return !!( $checker && $checker.canPlayType && $checker.canPlayType( 'video/' + type ) );
+	}
+
+	function showContainer () {
+		$style.width = $style.height = '100%';
+	}
+
+})();
+</script>
+
+</body>
+</html>

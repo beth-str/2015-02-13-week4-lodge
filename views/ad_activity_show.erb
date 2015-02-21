@@ -1,21 +1,14 @@
 <h2>Guest Activities:</h2>
 
-<table width="500px" valign="top">
-  <tr>
-    <td width="200px" align="center"><strong>Guest Name:</strong></td>
-    <td width="50px" align="center"><strong>Age:</strong></td>
-    <td width="200px" align="center"><strong>Activity:</strong></td>
-  </tr>
-</table>
-    <% @guest_activity.reservation_id.each do |x| %>
-      <table width="500px" valign="top">
-        <tr>
-          <td width="200px" align="left">
-            <%= x.first_name %> <%= x.last_name %></td>
-          <td width="50px">
-            <%= x.age %></td>
-          <td width="200px" align="right">
-            <%= x.name %></td>
-        </tr>
-      </table>
-    <% end %>
+  <% @activities.each do |z| %>
+    <p><strong><%= z.name %></p>
+      <% @reservations.each do |x| %>
+          <% @guest_activity.each do |y| %>
+            <% if y.reservation_id == x.id %>
+              <% if y.name == z.name %>
+                <p class="indent-20"><%= y.first_name %> <%= y.last_name %> (Age: <%= y.age %>)</p>
+              <% end %>
+            <% end %>
+          <% end %>
+      <% end %>
+  <% end %>

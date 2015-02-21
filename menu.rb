@@ -6,15 +6,16 @@ require 'v8'
 require 'forecast_io'
 require 'google_calendar'
 require 'google_calendar_oauth2'
+require 'pony'
 DATABASE = SQLite3::Database.new("database/lodge.db")
-require_relative "module.rb"
+require_relative "helpers.rb"
 require_relative "models/db_setup.rb"
 require_relative "models/activity.rb"
 require_relative "models/reservation.rb"
 require_relative "models/guest.rb"
 require_relative "models/guest_activity.rb"
 
-
+include LodgeHelper
 
 DATABASE.results_as_hash = true
 
@@ -72,6 +73,11 @@ end
 
 get "/contact" do
   erb :contact
+end
+
+post "/contact" do
+  send_message
+  redirect to ('/contact_confirm')
 end
 
 get "/contact_confirm" do
@@ -141,6 +147,7 @@ end
 get '/admin/show_activities' do
   @reservations = Reservation.all
   @guest_activity = GuestActivity.show_guests_activities
+  @activities = Activity.all
   erb :ad_activity_show, :layout => :layout_back
 end
 

@@ -16,14 +16,14 @@
 
 class GuestActivity
   attr_reader :id
-  attr_accessor :first_name, :last_name, :age, :name
+  attr_accessor :first_name, :last_name, :age, :name, :reservation_id
 
   def initialize(options)
     @id              = options["id"]
     @first_name      = options["first_name"]
     @last_name       = options["last_name"]
     @age             = options["age"]
-    @activity        = options["name"]
+    @name            = options["name"]
     @reservation_id  = options["reservation_id"]
   end
 
