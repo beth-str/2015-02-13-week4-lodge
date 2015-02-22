@@ -9,13 +9,13 @@
   <body background-color="#FFFFFF"> 
       <div class="image-wrapper"> 
         <table>
-        <a href="/admin"><img class="stretch" height="200px" src="/images/IMG_7881_cropped.jpg" alt="header image"/></a> 
+        <a href="/admin"><img class="stretch" height="150px" src="/images/IMG_7881_cropped.jpg" alt="header image"/></a> 
         <h1>The Lodge</h1><br>
         <h1 style="margin: 2px 0px 0px 100px; font-size: 20px; font-style: italic"><br>Management Tool</h1> 
         </table>
       </div>
     
-    <table width="1200px" padding="10px" border-right="1px" v-align="top">
+    <table width="900px" padding="10px" border-right="1px" v-align="top">
       <tr>
         <td width="300px" valign="top">
           <h3 style="font-color: #2196F3">Manage Reservations
@@ -41,17 +41,41 @@
               <a href="/admin/show_activities">View All Guests / Activities</a>
             </h4>
 
-          <h3 style="font-color: #2196F3">Other</h3>
+          <h3 style="font-color: #2196F3">Manage Activities</h3>
             <h4>
-              <a href="/admin/calendar_show">Edit Calendar</a>
+              <a href="/admin/activity_add">Add Activity</a><br>
+              <a href="/admin/activity_edit">Edit Activity</a><br>
+              <a href="/admin/activity_list">View All Activities</a><br>
+              <a href="/admin/activity_assign">Assign Activity</a>
               <br>
-              <a href="/admin/populate_join">Populate Join</a>
-              </h4>
+
+
+          <h3 style="font-color: #2196F3">Manage Calendar</h3>
+            <h4>
+              <a href="/admin/calendar_add">Add Event</a><br>
+              <a href="/admin/calendar_edit">Edit Event</a><br>
+              <a href="/admin/calendar_delete">Delete Event</a><br>
+              <a href="/admin/calendar_show">View Calendar</a>
+            </h4>
           </td>
 
-          <td valign="top">
+          <td valign="top" width="600px">
               <%= yield %>
           </td>
 
       </tr>
-    </table>
+      </table>
+  </body>
+      <footer>
+        <table width="900" style="border-top: 2px solid #FFC107;" cellspacing="2" cellpadding="2">
+          <tr>
+            <td width="200" class="footer" align="left" valign="top">©2001-2015 Steward Farms - The Lodge
+            </td>
+            <td width="200" align="right">
+              <a href="http://www.thelodge.com/">Steward Farms - The Lodge</a><br>
+              <a href="mailto:info@thelodge.com">info@thelodge.com</a><br>
+          </td>
+         </tr>
+       </table>
+      </footer>
+</html>

@@ -1,0 +1,50 @@
+<h2>Select the event reservation you would like to add to the calendar:</h2>
+
+<form action="/admin/event_add_to_calendar">
+  
+  <p>Select your reservation group name:<br>
+    <select name="reservation_id">
+      <% Reservation.all.each do |x| %>
+        <option value="<%= x.id %>"><%= x.id %>. <%= x.name %>
+        </option>
+      <% end %>
+    </select>
+  </p>
+</form>
+
+
+<%=   def create_event(&blk)
+      setup_event(Event.new, &blk)
+    end
+ %>
+ 
+<%=  event = cal.create_event do |e|
+   e.title = 'A Cool Event'
+   e.start_time = Time.now
+   e.end_time = Time.now + (60 * 60) # seconds * min
+ end
+ %> 
+ 
+ <%= params[:title] %><br> 
+ <%= params[:arrival_date] %><br>
+ <%= params[:departure_date] %><br>
+ 
+ 
+ 2015-02-21 17:45:41 -0600
+ 
+ <!-- # Saves the specified event.
+  # This is a callback used by the Event class.
+  # -->
+<%=   def save_event(event)
+    method = event.new_event? ? :post : :put
+    body = event.use_quickadd? ? nil : event.to_json
+
+    query_string =  if event.use_quickadd?
+      "/quickAdd?text=#{event.title}"
+    elsif event.new_event?
+      ''
+    else # update existing event.
+      "/#{event.id}"
+    end
+ %>
+

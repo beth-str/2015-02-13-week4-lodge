@@ -1,0 +1,25 @@
+<h2>Assign an Activity to a Guest</h2>
+
+
+<form action="/admin/activity_assign_confirm">
+  
+  <p>Select the Guest:<br>
+    <select name="guest_id">
+      <% Guest.all.each do |x| %>
+        <option value="<%= x.id %>"><%= x.first_name %> <%= x.last_name %>
+        </option>
+      <% end %>
+    </select>
+
+  <p>Select the Activity:<br>
+    <select name="activity_id">
+      <% Activity.all.each do |y| %>
+        <option value="<%= y.id %>"><%= y.name %>
+        </option>
+      <% end %>
+    </select>
+<br>
+<br>
+  <input type="submit" value="Submit">
+</form>
+<br>

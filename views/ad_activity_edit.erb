@@ -1,0 +1,5 @@
+<h2>Select the activity you'd like to edit:</h2>
+
+<% @activities.each do |x| %>
+ <p><%= x.id %>.   <%= x.name %> - <a href="/admin/activity_edit_form?id=<%= x.id %>">Edit</a><br>
+<% end %>

@@ -1,0 +1,15 @@
+<h2>List of Activities:</h2>
+
+<table width="300px"><tr>
+  <td width="175px">
+    <strong>Activity Name</strong></td>
+  <td width="100px">
+    <strong>Person Limit</strong></td>
+    <br>
+  </tr>
+  <% @activities.each do |z| %>
+    <tr><td width="175px"><%= z.name %></td>
+    <td width="100px"><%= z.person_limit %></td>
+    </tr>
+  <% end %>
+</table>

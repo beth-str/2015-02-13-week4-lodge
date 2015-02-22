@@ -14,7 +14,7 @@ module LodgeHelper
   def send_message
     Pony.mail({
       :from => params[:email], 
-      :to => 'bethstranz@gmail.com',
+      :to => 'info_the_lodge@gmail.com',
       :subject => params[:email] + " has contacted you - Phone: " + params[:phone], 
       :body => params[:email] + params[:message],
       :via => :smtp,
@@ -22,11 +22,20 @@ module LodgeHelper
         :address              => 'smtp.gmail.com', 
         :port                 => '587', 
         :enable_starttls_auto => true,
-        :user_name            => 'bethstranz',
+        :user_name            => 'info_the_lodge',
         :password             => 'secret',
         :authentication       => :plain,
         :domain               => 'localhost.localdomain'
       }}) 
+  end
+
+  #---------------------------------------------------------
+  # Public: #populate_join
+  # Inserts new join data for guest/activity to the guests_activities table
+  #---------------------------------------------------------
+  def populate_join(params)
+    DATABASE.execute("INSERT INTO guests_activities (guest_id, activity_id) VALUES ('#{@guest_id}', '#{@activity_id}')")
+    @id = DATABASE.last_insert_row_id 
   end
 
 end

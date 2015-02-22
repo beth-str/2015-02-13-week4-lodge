@@ -59,6 +59,7 @@
 body {
 	margin: 100;
 	padding: 50;
+  height: 650;
 }
 
 h1 {
@@ -126,9 +127,10 @@ a:hover {
   }
   
 footer {
-  font: 12px verdana, sans-serif;
+  font: 10px verdana, sans-serif;
   color: #333333;
   height: 100%;
+  padding-bottom: 10px;
   }
 
 .r-box {

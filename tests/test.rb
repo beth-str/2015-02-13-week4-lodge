@@ -3,7 +3,7 @@ require 'sqlite3'
 require 'pry'
 DATABASE = SQLite3::Database.new("data_for_testing.db")
 # require_relative 'db_setup.rb'
-require_relative "../module.rb"
+require_relative "../helpers.rb"
 require_relative "../models/activity.rb"
 require_relative "../models/guest.rb"
 require_relative "../models/reservation.rb"
@@ -38,48 +38,28 @@ class LodgeTest < Minitest::Test
     new_guest = Guest.new({'first_name' => 'Jen', 'last_name' => 'Lacey', 'age' => 17, 'gender' => 'female', 'reservation_id' => 4})
     x = new_guest.insert
     assert_kind_of(Integer, x)
-    DATABASE.execute("DELETE FROM guests WHERE id = x")
   end
 
   def test_activity_creation
     new_activity = Activity.new({'name' => 'Lawn darts', 'person_limit' => '8'})
     x = new_activity.insert
     assert_kind_of(Integer, x)
-    DATABASE.execute("DELETE FROM activities WHERE name = 'Lawn darts'")
   end
 
   def test_list_all_reservations
+    binding.pry
     y = DATABASE.execute("SELECT * FROM reservations")
     assert_equal(y.length, Reservation.all.length)
   end
 
-  # --------------------------
-
-
-
-  def test_location_deletion
-    new_location = Location.new({'city' => "Jacksonville FL"})
-    x = new_location.insert
-    array = Location.delete(x)
-    assert_equal(0, array.length)
+  def test_list_all_activities
+    y = DATABASE.execute("SELECT * FROM activities")
+    assert_equal(y.length, Activity.all.length)
   end
 
-  def test_category_deletion
-    new_category = Category.new({'genre' => "sweetness"})
-    x = new_category.insert
-    array = Category.delete(x)
-    assert_equal(0, array.length)
+  def test_list_all_guests
+    y = DATABASE.execute("SELECT * FROM guests")
+    assert_equal(y.length, Guest.all.length)
   end
-
-  def test_location_deletion_with_existing_products
-    location = Location.delete(3)
-    assert_empty([], location)
-  end
-
-  def test_category_deletion_with_existing_products
-    category = Category.delete(1)
-    assert_empty([], category)
-  end
-
 
 end
