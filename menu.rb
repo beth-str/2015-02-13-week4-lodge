@@ -241,13 +241,29 @@ get '/admin/calendar_add' do
   erb :ad_calendar_add, :layout => :layout_back
 end
 
+get '/admin/calendar_add_form' do
+  @event = Reservation.where_id_is(params[:id])
+  erb :ad_calendar_add_form, :layout => :layout_back
+end
+
+before '/admin/calendar_add_confirm' do
+
+
+
+end
+
+get '/admin/calendar_add_confirm' do
+  create_google_calendar_event(params)
+  erb :ad_calendar_confirm, :layout => :layout_back
+end
+
 get '/admin/calendar_edit' do
   @reservations = Reservation.all
   erb :ad_calendar_edit, :layout => :layout_back
 end
 
 get '/admin/calendar_delete' do
-  erb :ad_calendar_edit, :layout => :layout_back
+  erb :ad_calendar_delete, :layout => :layout_back
 end
 
 get '/admin/calendar_show' do

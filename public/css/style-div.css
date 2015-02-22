@@ -117,7 +117,8 @@
 
 h1 {
 	font-size: 24px;
-	font-family: Tahoma, Geneva, sans-serif;
+  letter-spacing: .5pt;
+  font-family: Tahoma, Geneva, sans-serif;
   color: #336600;
   margin-bottom: -12px; 
   }
@@ -134,7 +135,7 @@ h3 {
   text-align: right;
   font-size: 18px; 
   font-style: italic;
-  letter-spacing: .5pt;
+  letter-spacing: .75pt;
   font: georgia, sans-serif;
   color: #727272;
   margin-right: 60px;

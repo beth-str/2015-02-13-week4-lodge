@@ -1,0 +1,18 @@
+<h2>Add Event to Calendar</h2>
+<p>Edit as needed so that the information will display on the calendar as you would like it to appear:</p>
+
+<form action="/admin/calendar_add_confirm">
+  <p>Group Name:<br>
+  <input type="text" required value="<%= @event.name %>" class="longtextbox" name="title"></p>
+
+  <p>Arrival Date:<br>
+  <input type="text" required value="<%= @event.arrival_date %>" class="longtextbox" name="start_time"></p>
+
+  <p>Departure Date:<br>
+  <input type="text" required value="<%= @event.departure_date %>" class="longtextbox" name="end_time"></p>
+
+  <input type="submit" value="Add Event">
+</form>
+<br>
+<br>
+

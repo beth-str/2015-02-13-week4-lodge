@@ -43,5 +43,28 @@ module LodgeHelper
     DATABASE.execute("INSERT INTO guests_activities (guest_id, activity_id) VALUES ('#{params["guest_id"]}', '#{params["activity_id"]}')")
     @id = DATABASE.last_insert_row_id 
   end
-  
+
+
+
+
+
+  #---------------------------------------------------------
+  # Initialization of calendar
+  #---------------------------------------------------------
+  cal = Google::Calendar.new(:client_id => '212643930905-2g9plm4m8kk8fk2prqs4ojf51p16ke7v.apps.googleusercontent.com', :client_secret => 'iTLIjzSm5cNzVwuH8FCPnhTD', :calendar => 'ld27870tkt6dmn85ksm6kibrrg@group.calendar.google.com', :redirect_url  => 'http://127.0.0.1:4567/', :refresh_token => '1/CadlbSaaYaNX-ftCafL69qHH9jsX_vL95fPNCZtOCQIMEudVrK5jSpoR30zcRFq6')
+
+  #---------------------------------------------------------
+  # Public: #populate_join
+  # Inserts new join data for guest/activity to the guests_activities table
+  # Params: guest_id, activity_id (passed from form)
+  #---------------------------------------------------------
+  def create_google_calendar_event(params)
+    event = cal.create_event do |e|
+       e.title = params[:title]
+       e.start_time = params[:start_time]
+       e.end_time = params[:end_time]
+     end
+  end
+
+
 end

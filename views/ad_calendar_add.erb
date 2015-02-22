@@ -1,65 +1,30 @@
 <h2>Select the event reservation you would like to add to the calendar:</h2>
 
-<form action="/admin/event_add_to_calendar">
-  
-  <p>Select your reservation group name:<br>
-    <select name="reservation_id">
+<p>Note: Only approved events can be added to the calendar. <br>Please <a href="/admin/reservation_status">update the reservation status</a> if needed.</p>
+
+<% @reservations.each do |reservation| %>
+<table width="600px" valign="top">
+  <tr>
+    <td width="200px" align="left"><%= reservation.id %>. <%= reservation.name %></td>
+    <td width="100px" align="left"><%= reservation.arrival_date %></td>
+    <td width="100px" align="left"><%= reservation.departure_date %></td>
+    <td width="5px"></td>
+    <td width="100px" align="left"><%= reservation.status %></td>
+<% end %>
+  </tr>
+</table>
+
+<br>
+<form action="/admin/calendar_add_form">
+  <p><strong>Select the reservation to add to the calendar:</strong></p>
+    <select name="id">
       <% Reservation.all.each do |x| %>
-        <option value="<%= x.id %>"><%= x.id %>. <%= x.name %>
-        </option>
+        <% if x.status == "approved" %>
+          <option value="<%= x.id %>"><%= x.id %>. <%= x.name %>
+          </option>
+        <% end %>
       <% end %>
     </select>
-  </p>irb
+   <input type="submit" value="Submit">
 </form>
-
-<!-- ga8mgvk0clva1itl9bnuu5h8lk (Johnson Family) -->
-
-<%=   def create_event(&blk)
-      setup_event(Event.new, &blk)
-    end
- %>
- 
-x = Date.strptime(arrival_date, "%m/%d/%Y").strftime("%d/%m/%Y") 
-Date.strptime(arrival_date, "%m/%d/%Y").strftime("%d/%m/%Y") 
-
-ds = Date.parse(x)   => 2015-03-24 ((2457106j,0s,0n),+0s,2299161j)
-ds.to_time           => 2015-03-24 00:00:00 -0500
- 
- This would be better:
- ts = 'Mar 24, 2015 11:00:00'
- ts = Time.parse(ts)    => 2015-03-24 11:00:00 -0500
- 
- 
- 
- 
-<%=  event = cal.create_event do |e|
-   e.title = 'A Cool Event'
-   e.start_time = Time.now
-   e.end_time = Time.now + (60 * 60) # seconds * min
-   e.attendees = (no_adults + no_children)
- end
- %> 
- 
- <%= params[:title] %><br> 
- <%= params[:arrival_date] %><br>
- <%= params[:departure_date] %><br>
- 
- 
- 2015-02-21 17:45:41 -0600
- 
- <!-- # Saves the specified event.
-  # This is a callback used by the Event class.
-  # -->
-<%=   def save_event(event)
-    method = event.new_event? ? :post : :put
-    body = event.use_quickadd? ? nil : event.to_json
-
-    query_string =  if event.use_quickadd?
-      "/quickAdd?text=#{event.title}"
-    elsif event.new_event?
-      ''
-    else # update existing event.
-      "/#{event.id}"
-    end
- %>
 

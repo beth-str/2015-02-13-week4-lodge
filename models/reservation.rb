@@ -99,7 +99,7 @@ end
   #---------------------------------------------------------
   def self.where_id_is(id)
     x = DATABASE.execute("SELECT * FROM reservations WHERE id = '#{id}'")
-    results = Reservation.new(params)
+    results = Reservation.new(x[0])
     return results
   end
 
