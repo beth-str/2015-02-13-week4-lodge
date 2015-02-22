@@ -34,10 +34,9 @@ module LodgeHelper
   # Inserts new join data for guest/activity to the guests_activities table
   #---------------------------------------------------------
   def populate_join(params)
-    DATABASE.execute("INSERT INTO guests_activities (guest_id, activity_id) VALUES ('#{@guest_id}', '#{@activity_id}')")
+    DATABASE.execute("INSERT INTO guests_activities (guest_id, activity_id) VALUES ('#{params["guest_id"]}', '#{params["activity_id"]}')")
     @id = DATABASE.last_insert_row_id 
   end
-
 end
 
 

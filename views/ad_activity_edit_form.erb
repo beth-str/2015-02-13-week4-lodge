@@ -1,14 +1,14 @@
 <h2>Enter the new activity information:</p>
-<form action="/admin/activity_add_confirm">
+<form action="/admin/activity_edit_confirm">
   <p>Activity Name:<br>
-  <input type="text" required value="@form_values.name" class="longtextbox" name="name"></p>
+  <input type="text" required value="<%= @form_values.name %>" class="longtextbox" name="name"></p>
 
   <p>Person Limit (number of people who can participate at one time):<br>
-  <input type="text" required value="@form_values.person_limit" class="longtextbox" name="person_limit"></p>
+  <input type="text" required value="<%= @form_values.person_limit %>" class="longtextbox" name="person_limit"></p>
 
-  <input type="hidden" value="@form_values.id" name="id">
+  <input type="hidden" value="<%= @form_values.id %>" name="id">
 
-  <input type="submit" value="Add Activity">
+  <input type="submit" value="Save Edits">
 
 </form>
 <br>

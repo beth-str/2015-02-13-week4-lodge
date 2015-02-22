@@ -206,7 +206,7 @@ end
 
 get '/admin/activity_edit_form' do
   @form_values = Activity.where_id_is(params[:id])
-  erb :ad_activity_edit, :layout => :layout_back
+  erb :ad_activity_edit_form, :layout => :layout_back
 end
 
 get '/admin/activity_edit_confirm' do
