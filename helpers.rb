@@ -4,13 +4,17 @@
 #
 # Public Methods:
 # send_message (uses pony gem to send contact form via email)
-
+# populate_join (adds to join table guests_activities)
 
 #---------------------------------------------------------
-
-
 module LodgeHelper
 
+
+  #---------------------------------------------------------
+  # Public: #send_message
+  # Facilitates sending form data as email
+  # Params: email, phone, message (passed from contact form)
+  #---------------------------------------------------------
   def send_message
     Pony.mail({
       :from => params[:email], 
@@ -29,43 +33,15 @@ module LodgeHelper
       }}) 
   end
 
+
   #---------------------------------------------------------
   # Public: #populate_join
   # Inserts new join data for guest/activity to the guests_activities table
+  # Params: guest_id, activity_id (passed from form)
   #---------------------------------------------------------
   def populate_join(params)
     DATABASE.execute("INSERT INTO guests_activities (guest_id, activity_id) VALUES ('#{params["guest_id"]}', '#{params["activity_id"]}')")
     @id = DATABASE.last_insert_row_id 
   end
+  
 end
-
-
-
-
-  #---------------------------------------------------------
-    # Public: .where_email_is
-    # Searches the Reservation class for a single email address. 
-    #
-    # Parameter: String: email
-    #
-    # Returns: Single Reservation object with matching email (passed as argument)
-  #---------------------------------------------------------
-#   def where_email_is(email)
-#     x = DATABASE.execute("SELECT * FROM reservations WHERE email = '#{email}'")
-#       results = Reservation.new(params)
-#     return results
-#   end
-#
-#     # Public: .where_id_is
-#     # Searches the Reservation class for a single id.
-#     #
-#     # Parameter: Integer: id
-#     #
-#     # Returns: Single Reservation object with matching id (passed as argument)
-#   #---------------------------------------------------------
-#   def where_id_is(id)
-#     x = DATABASE.execute("SELECT * FROM reservations WHERE id = #{id}")
-#     results = Reservation.new(params)
-#     return results
-#   end
-# end

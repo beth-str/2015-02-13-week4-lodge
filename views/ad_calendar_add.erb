@@ -9,19 +9,34 @@
         </option>
       <% end %>
     </select>
-  </p>
+  </p>irb
 </form>
 
+<!-- ga8mgvk0clva1itl9bnuu5h8lk (Johnson Family) -->
 
 <%=   def create_event(&blk)
       setup_event(Event.new, &blk)
     end
  %>
  
+x = Date.strptime(arrival_date, "%m/%d/%Y").strftime("%d/%m/%Y") 
+Date.strptime(arrival_date, "%m/%d/%Y").strftime("%d/%m/%Y") 
+
+ds = Date.parse(x)   => 2015-03-24 ((2457106j,0s,0n),+0s,2299161j)
+ds.to_time           => 2015-03-24 00:00:00 -0500
+ 
+ This would be better:
+ ts = 'Mar 24, 2015 11:00:00'
+ ts = Time.parse(ts)    => 2015-03-24 11:00:00 -0500
+ 
+ 
+ 
+ 
 <%=  event = cal.create_event do |e|
    e.title = 'A Cool Event'
    e.start_time = Time.now
    e.end_time = Time.now + (60 * 60) # seconds * min
+   e.attendees = (no_adults + no_children)
  end
  %> 
  

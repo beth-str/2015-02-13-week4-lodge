@@ -29,3 +29,4 @@ class Calendar
 #
 # GoogleCalendar::Event.create({'summary' => 'Some cool event everyone wants to go to.', 'start' => {'dateTime' => '2012-01-29T12:00:00-06:00'}, 'end' => 'dateTime' => '2012-01-29T13:00:00-06:00'})
 # Generat
+end

@@ -7,6 +7,10 @@ require 'forecast_io'
 require 'google_calendar'
 require 'google_calendar_oauth2'
 require 'pony'
+require 'date'
+require 'time'
+require 'active_support'
+require 'active_support/core_ext/numeric/conversions.rb'
 DATABASE = SQLite3::Database.new("database/lodge.db")
 require_relative "helpers.rb"
 require_relative "models/db_setup.rb"
@@ -247,6 +251,8 @@ get '/admin/calendar_delete' do
 end
 
 get '/admin/calendar_show' do
+  cal = Google::Calendar.new(:client_id => '212643930905-2g9plm4m8kk8fk2prqs4ojf51p16ke7v.apps.googleusercontent.com', :client_secret => 'iTLIjzSm5cNzVwuH8FCPnhTD', :calendar => 'ld27870tkt6dmn85ksm6kibrrg@group.calendar.google.com', :redirect_url  => 'http://127.0.0.1:4567/', :refresh_token => '1/CadlbSaaYaNX-ftCafL69qHH9jsX_vL95fPNCZtOCQIMEudVrK5jSpoR30zcRFq6')
+  @events = cal.events
   erb :ad_calendar_show, :layout => :layout_back
 end
 

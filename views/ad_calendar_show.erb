@@ -1,3 +1,18 @@
-<h2>These are the events currently on the calendar:</h2>
+<h2>Events on The Lodge calendar (via Google):</h2>
 
-<%= cal.events %>
+<p><a href="https://www.google.com/calendar/embed?src=ld27870tkt6dmn85ksm6kibrrg%40group.calendar.google.com&ctz=America/Chicago" target="blank">View entire calendar</a></p>
+
+<% @events.each do |x| %> 
+  <% @arrive = x.start_time.to_s %>
+  <% @arrive = Date.parse(@arrive) %>
+  <% @arrive = @arrive.strftime("%A, %d %b %Y") %>
+  <% @depart = x.end_time.to_s %>
+  <% @depart = Date.parse(@depart) %>
+  <% @depart = @depart.strftime("%A, %d %b %Y") %>
+
+  <h4><strong><%= x.title %></strong> <a href="<%= x.html_link %>" target="blank">View this event</a></h4>
+  <p class="indent-20"><strong>Arrival date: </strong><%= @arrive %><br>
+    <strong>Departure date: </strong><%= @depart %></p>
+  <% x.id %>
+  <br>
+<% end %>
