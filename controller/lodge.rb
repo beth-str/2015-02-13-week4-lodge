@@ -1,56 +1,56 @@
 #--------WEBSITE (PUBLIC)--------
 
 get "/" do
-  erb :homepage
+  erb :"lodge/homepage"
 end
 
 get "/about" do
-  erb :about
+  erb :"lodge/about"
 end
 
 get "/activities" do
-  erb :activities
+  erb :"lodge/activities"
 end
 
 get "/prices" do
-  erb :prices
+  erb :"lodge/prices"
 end
 
 get "/guest_reviews" do
-  erb :guest_reviews
+  erb :"lodge/guest_reviews"
 end
 
 get "/photo_gallery" do
-  erb :photo_gallery
+  erb :"lodge/photo_gallery"
 end
 
 get "/calendar" do
-  erb :calendar
+  erb :"lodge/calendar"
 end
 
 get "/new_reservation" do
-  erb :new_reservation
+  erb :"lodge/new_reservation"
 end
 
 get "/reservation_confirm" do
   x = Reservation.new(params)
   x.insert
   @reservation_id = params[:name]
-  erb :new_reservation_confirm
+  erb :"lodge/new_reservation_confirm"
 end
 
 get "/add_guest" do
-  erb :new_guest
+  erb :"lodge/new_guest"
 end
 
 get "/guest_confirm" do
   x = Guest.new(params)
   x.insert
-  erb :new_guest_confirm
+  erb :"lodge/new_guest_confirm"
 end
 
 get "/contact" do
-  erb :contact
+  erb :"lodge/contact"
 end
 
 post "/contact" do
@@ -59,6 +59,5 @@ post "/contact" do
 end
 
 get "/contact_confirm" do
-  erb :contact_confirm
+  erb :"lodge/contact_confirm"
 end
-

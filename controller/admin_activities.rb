@@ -1,44 +1,42 @@
 
 #------------ACTIVITIES------------
 
-get '/admin/activity_add' do
-  erb :ad_activity_add, :layout => :layout_back
+get '/admin/activity/add' do
+  erb :"admin/activity/add", :layout => :layout_back
 end
 
-get '/admin/activity_add_confirm' do
+get '/admin/activity/add_confirm' do
   x = Activity.new(params)
   x.insert
-  erb :ad_activity_add_confirm, :layout => :layout_back
+  erb :"admin/activity/add_confirm", :layout => :layout_back
 end
 
-get '/admin/activity_edit' do
+get '/admin/activity/edit' do
   @activities = Activity.all
-  erb :ad_activity_edit, :layout => :layout_back
+  erb :"admin/activity/edit", :layout => :layout_back
 end
 
-get '/admin/activity_edit_form' do
+get '/admin/activity/edit_form' do
   @form_values = Activity.where_id_is(params[:id])
-  erb :ad_activity_edit_form, :layout => :layout_back
+  erb :"admin/activity/edit_form", :layout => :layout_back
 end
 
-get '/admin/activity_edit_confirm' do
+get '/admin/activity/edit_confirm' do
   x = Activity.new(params)
   x.save(params)
-  erb :ad_activity_edit_confirm, :layout => :layout_back
+  erb :"admin/activity/edit_confirm", :layout => :layout_back
 end
 
-get '/admin/activity_list' do
+get '/admin/activity/list' do
   @activities = Activity.all
-  erb :ad_activity_list, :layout => :layout_back
+  erb :"admin/activity/list", :layout => :layout_back
 end
 
-get '/admin/activity_assign' do
-  erb :ad_activity_assign, :layout => :layout_back
+get '/admin/activity/assign' do
+  erb :"admin/activity/assign", :layout => :layout_back
 end
 
-get '/admin/activity_assign_confirm' do
+get '/admin/activity/assign_confirm' do
   populate_join(params)
-  erb :ad_activity_assign_confirm, :layout => :layout_back
+  erb :"admin/activity/assign_confirm", :layout => :layout_back
 end
-
-
