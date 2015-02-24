@@ -1,9 +1,5 @@
 #--------WEBSITE (PUBLIC)--------
 
-get "/" do
-  erb :"lodge/homepage"
-end
-
 get "/about" do
   erb :"lodge/about"
 end

@@ -6,8 +6,8 @@
     <% @reservations.each do |reservation| %>
     <td width="150px" align="left"><%= reservation.id %>. <%= reservation.name %></td>
     <td width="150px" align="left"><%= reservation.email %></td>
-    <td width="50px" align="left"><a href="/admin/edit_reservation_form?email=<%= reservation.email %>">Edit</a></td>
-    <td width="125px" align="left"><a href="/admin/edit_reservation_status?email=<%= reservation.email %>">Update Status</a></td>
+    <td width="50px" align="left"><a href="/admin/reservation/edit_form?email=<%= reservation.email %>">Edit</a></td>
+    <td width="125px" align="left"><a href="/admin/reservation/edit_status?email=<%= reservation.email %>">Update Status</a></td>
     <td width="65px" align="left"><%= reservation.status %></td>
   </tr>
   <% end %>

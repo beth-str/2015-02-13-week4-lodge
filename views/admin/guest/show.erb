@@ -5,7 +5,7 @@
         <p class="indent-20">Guests assigned to <strong><%= x.name %></strong> Party <em>(arriving <%= x.arrival_date %>)</em>:</p>
         <% @guests.each do |y| %>
           <% if y.reservation_id == x.id %>
-          <p class="indent-40"><%= y.id %>. <%= y.first_name %> <%= y.last_name %> <a href="/admin/edit_guest_form?id=<%= y.id %>">Edit</a></p>
+          <p class="indent-40"><%= y.id %>. <%= y.first_name %> <%= y.last_name %> <a href="/admin/guest/edit_form?id=<%= y.id %>">Edit</a></p>
           <% end %>
         <% end %>
   <% end %>

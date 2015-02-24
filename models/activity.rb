@@ -14,7 +14,7 @@
 #---------------------------------------------------------
 
 class Activity
-  include LodgeHelper
+  
   attr_reader :id
   attr_accessor :name, :person_limit
   
@@ -55,7 +55,9 @@ end
   # Displays all activities
   #---------------------------------------------------------
   def self.all
-    results = DATABASE.execute("SELECT * FROM activities")
+    sql_query = "SELECT * FROM activities"
+    
+    results = DATABASE.execute(sql_query)
     @results_as_objects = []
       results.each do |r|
         @results_as_objects << Activity.new(r)
@@ -74,7 +76,9 @@ end
   # Returns: Single Activity object with matching id (passed as argument)
   #---------------------------------------------------------
   def self.where_id_is(id)
-    x = DATABASE.execute("SELECT * FROM activities WHERE id = '#{id}'")
+    sql_query = "SELECT * FROM activities WHERE id = '#{id}'"
+    
+    x = DATABASE.execute(sql_query)
     results = Activity.new(x[0])
     return results
   end

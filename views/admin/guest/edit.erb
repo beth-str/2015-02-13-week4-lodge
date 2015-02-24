@@ -3,5 +3,5 @@
 <h2>Select the guest you'd like to edit:</h2>
 
 <% @guests.each do |guest| %>
- <p><%= guest.id %>.   <%= guest.first_name %> <%= guest.last_name %> <a href="/admin/edit_guest_form?id=<%= guest.id %>">Edit</a><br>
+ <p><%= guest.id %>.   <%= guest.first_name %> <%= guest.last_name %> <a href="/admin/guest/edit_form?id=<%= guest.id %>">Edit</a><br>
 <% end %>

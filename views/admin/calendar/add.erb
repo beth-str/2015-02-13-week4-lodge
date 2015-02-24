@@ -1,6 +1,6 @@
 <h2>Select the event reservation you would like to add to the calendar:</h2>
 
-<p>Note: Only approved events can be added to the calendar. <br>Please <a href="/admin/reservation_status">update the reservation status</a> if needed.</p>
+<p>Note: Only approved events can be added to the calendar. <br>Please <a href="/admin/reservation/status">update the reservation status</a> if needed.</p>
 
 <% @reservations.each do |reservation| %>
 <table width="600px" valign="top">
@@ -15,7 +15,7 @@
 </table>
 
 <br>
-<form action="/admin/calendar_add_form">
+<form action="/admin/calendar/add_form">
   <p><strong>Select the reservation to add to the calendar:</strong></p>
     <select name="id">
       <% Reservation.all.each do |x| %>

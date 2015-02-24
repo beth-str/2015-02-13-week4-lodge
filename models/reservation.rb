@@ -25,6 +25,7 @@
 # .all  
 #---------------------------------------------------------
 class Reservation
+  
   attr_reader :id
   attr_accessor :name, :email, :address, :city, :state, :phone, :no_adults, :no_children, :arrival_date, :departure_date, :comments, :status
 

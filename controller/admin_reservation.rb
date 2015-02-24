@@ -1,9 +1,4 @@
 #-------------RESERVATIONS-------------
-
-get '/admin' do
-  erb :"admin/ad_login", :layout => :layout_back
-end
-
 get '/admin/reservation/add' do
   erb :"admin/reservation/add", :layout => :layout_back
 end

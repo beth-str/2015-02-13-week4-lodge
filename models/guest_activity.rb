@@ -15,6 +15,7 @@
 #---------------------------------------------------------
 
 class GuestActivity
+  
   attr_reader :id
   attr_accessor :first_name, :last_name, :age, :name, :reservation_id
 

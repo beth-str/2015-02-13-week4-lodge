@@ -2,7 +2,7 @@
 
 
   
-<form action="/admin/edit_reservation_confirm">
+<form action="/admin/reservation/edit_confirm">
   <p>Group Name: <%= @form_values.name %><br>
     Current Status: <%= @form_values.status %></p>
     <p>Status:<br>
@@ -28,10 +28,8 @@
   <input type="hidden" required value="<%= @form_values.departure_date %>" name="departure_date">
   <input type="hidden" required value="<%= @form_values.comments %>" name="comments">
 
-
-
-
-
   <input type="submit" value="Save Status">
 
 </form>
+<br>
+<br>

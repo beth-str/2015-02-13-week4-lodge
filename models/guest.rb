@@ -17,6 +17,7 @@
 #---------------------------------------------------------
 
 class Guest
+  
   attr_reader :id, :reservation_id
   attr_accessor :first_name, :last_name, :age, :gender
   
