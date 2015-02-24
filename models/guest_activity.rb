@@ -37,4 +37,15 @@ class GuestActivity
     return @results_as_objects
   end
 
+  #---------------------------------------------------------
+  # Public: #populate_join
+  # Inserts new join data for guest/activity to the guests_activities table
+  # Params: guest_id, activity_id (passed from form)
+  #---------------------------------------------------------
+  def populate_join(params)
+    DATABASE.execute("INSERT INTO guests_activities (guest_id, activity_id) VALUES ('#{params["guest_id"]}', '#{params["activity_id"]}')")
+    @id = DATABASE.last_insert_row_id 
+  end
+
+
 end
