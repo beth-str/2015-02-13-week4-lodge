@@ -5,7 +5,8 @@
 # Public Methods:
 # send_message (uses pony gem to send contact form via email)
 # populate_join (adds to join table guests_activities)
-
+# date_parse (converts date from google calendar to display)
+# reverse_date_parse (coverts date from string to google calendar format)
 #---------------------------------------------------------
 module LodgeHelper
 
@@ -31,6 +32,35 @@ module LodgeHelper
         :authentication       => :plain,
         :domain               => 'localhost.localdomain'
       }}) 
+  end
+
+  #---------------------------------------------------------
+  # Public: date_parse
+  # Converts date from google calendar to display.
+  # Params: (start_time or end_time - from event object)
+  #---------------------------------------------------------
+  def date_parse(time_object)       # 2015-03-26 11:00:00 -0600
+    @time_s = time_object.to_s
+    @time_s = Date.parse(@time)
+    @time_s = @time.strftime("%A, %d %b %Y")
+    return @time_s                  # Thursday, Mar 26 2015
+  end
+
+  
+  #---------------------------------------------------------
+  # Initialization of calendar
+  #---------------------------------------------------------
+  def reverse_date_parse(time_string)       # "03/25/2015"  => 2015-03-26 11:00:00 -0600
+    array = []
+    @time_o = time_string.to_s.split('/')   # ["03", "25", "2015"]
+    rev = @time_o.reverse                   # ["2015", "25", "03"]
+    rev.push(rev[1])                        # ["2015", "25", "03", "25"]
+    rev.slice!(1)                           # ["2015", "03", "25"]
+    x = rev.join("-")
+    array << x
+    array.push("11:00:00")
+    array.push("-0600")
+    @time_o = array.join(" ")               # "2015-03-25 11:00:00 -0600"
   end
 
 

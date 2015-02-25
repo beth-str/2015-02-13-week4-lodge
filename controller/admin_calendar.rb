@@ -14,6 +14,8 @@ get '/admin/calendar/add_form' do
 end
 
 get '/admin/calendar/add_confirm' do
+  params[:start_time] = reverse_date_parse(params[:start_time])
+  params[:end_time] = reverse_date_parse(params[:end_time])
   create_google_calendar_event(params)
   erb :"admin/calendar/confirm", :layout => :layout_back
 end

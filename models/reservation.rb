@@ -50,7 +50,9 @@ class Reservation
   # Inserts new instantiation into the database
   #---------------------------------------------------------
   def insert
-    DATABASE.execute("INSERT INTO reservations (name, email, address, city, state, phone, no_adults, no_children, arrival_date, departure_date, comments, status) VALUES ('#{@name}', '#{@email}', '#{@address}', '#{@city}', '#{@state}', '#{@phone}', '#{@no_adults}', '#{@no_children}', '#{@arrival_date}', '#{@departure_date}', '#{comments}', '#{@status}')")
+    sql_query = "INSERT INTO reservations (name, email, address, city, state, phone, no_adults, no_children, arrival_date, departure_date, comments, status) VALUES ('#{@name}', '#{@email}', '#{@address}', '#{@city}', '#{@state}', '#{@phone}', '#{@no_adults}', '#{@no_children}', '#{@arrival_date}', '#{@departure_date}', '#{comments}', '#{@status}')"
+
+    DATABASE.execute(sql_query)
     @id = DATABASE.last_insert_row_id
   end
 
@@ -59,7 +61,7 @@ class Reservation
   # When changes are made to a Reservation object, this saves the changes to the database
   #---------------------------------------------------------
   def save(params)
-    DATABASE.execute("UPDATE reservations SET 
+    sql_query = "UPDATE reservations SET 
     name = '#{params[:name]}', 
     email = '#{params[:email]}', 
     address = '#{params[:address]}', 
@@ -71,10 +73,11 @@ class Reservation
     arrival_date = '#{params[:arrival_date]}', 
     departure_date = '#{params[:departure_date]}', 
     comments = '#{params[:comments]}', 
-    status = '#{params[:status]}' WHERE id = #{params[:id]}")
+    status = '#{params[:status]}' WHERE id = #{params[:id]}"
+    
+    DATABASE.execute(sql_query)
     return true
 end
-
 
 
   #---------------------------------------------------------
@@ -86,7 +89,9 @@ end
     # Returns: Single Reservation object with matching email (passed as argument)
   #---------------------------------------------------------
   def self.where_email_is(email)
-    results = DATABASE.execute("SELECT * FROM reservations WHERE email = '#{email}'")
+    sql_query = "SELECT * FROM reservations WHERE email = '#{email}'"
+
+    results = DATABASE.execute(sql_query)
       results_as_object = Reservation.new(results[0]) 
     return results_as_object
   end
@@ -99,7 +104,9 @@ end
     # Returns: Single Reservation object with matching id (passed as argument)
   #---------------------------------------------------------
   def self.where_id_is(id)
-    x = DATABASE.execute("SELECT * FROM reservations WHERE id = '#{id}'")
+    sql_query = "SELECT * FROM reservations WHERE id = '#{id}'"
+
+    x = DATABASE.execute(sql_query)
     results = Reservation.new(x[0])
     return results
   end
@@ -111,7 +118,9 @@ end
   # Displays all products
   #---------------------------------------------------------
   def self.all
-    results = DATABASE.execute("SELECT * FROM reservations")
+    sql_query = "SELECT * FROM reservations"
+
+    results = DATABASE.execute(sql_query)
     @results_as_objects = []
       results.each do |r|
         @results_as_objects << Reservation.new(r)
@@ -131,35 +140,9 @@ end
     # State Changes: Deletes reservation
   #---------------------------------------------------------
   def self.delete(email)
-      DATABASE.execute("DELETE FROM reservations WHERE email = '#{email}'")
+    sql_query = "DELETE FROM reservations WHERE email = '#{email}'"
+    
+      DATABASE.execute(sql_query)
   end
   
-  
-  # Public: #display_attributes
-   # Returns the attributes of an object as a table.
-   #
-   # Parameters:
-   # attributes              - Array: an array for the column headings      
-   #
-   # Returns:
-   # Table -  String:  a detailed table for the object
-   #
-   # State changes:
-   # creates a new row in table for each attribute of the object.
-  
-  def display_attributes(id)
-    x = Reservation.where_id_is(id)
-       attributes = []
-       x.instance_variables.each do |i|
-         # Example  :@name
-         attributes << i.to_s.delete("@")
-       end
-      table = "<table><tr><th>FIELD</th><th>VALUE</th></tr>"
-      attributes.each do |a|
-        table += "<tr><td>#{a}</td><td>#{self.send(a)}</td></tr>"
-      end
-      table += "</table>"
-      table
-    end
-
 end
