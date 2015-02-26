@@ -28,21 +28,25 @@ get "/new_reservation" do
   erb :"lodge/new_reservation"
 end
 
-get "/reservation_confirm" do
+post "/reservation_confirm" do
   x = Reservation.new(params)
   x.insert
   @reservation_id = params[:name]
-  erb :"lodge/new_reservation_confirm"
+  redirect "/thank_you"
 end
 
 get "/add_guest" do
   erb :"lodge/new_guest"
 end
 
-get "/guest_confirm" do
+post "/guest_confirm" do
   x = Guest.new(params)
   x.insert
-  erb :"lodge/new_guest_confirm"
+  redirect "/thank_you"
+end
+
+get "/thank_you" do
+  erb :"lodge/thank_you"
 end
 
 get "/contact" do
@@ -51,7 +55,7 @@ end
 
 post "/contact" do
   send_message
-  redirect to ('/contact_confirm')
+  redirect to ('/thank_you')
 end
 
 get "/contact_confirm" do

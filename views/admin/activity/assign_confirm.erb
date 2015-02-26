@@ -1,7 +1,0 @@
-<h2>Success!</h2>
-
-<% x = Guest.where_id_is(params[:guest_id]) %>
-<% y = Activity.where_id_is(params[:activity_id]) %>
-
-<h4>Your assignment for <strong><%= x.first_name %>
-  <%= x.last_name %></strong> to <strong><%= y.name %></strong> has been saved!</h4>

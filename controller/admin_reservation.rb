@@ -3,10 +3,10 @@ get '/admin/reservation/add' do
   erb :"admin/reservation/add", :layout => :layout_back
 end
 
-get '/admin/reservation/add_confirm' do
+post '/admin/reservation/add_confirm' do
   x = Reservation.new(params)
   x.insert
-  erb :"admin/reservation/add_confirm", :layout => :layout_back
+  redirect '/admin/reservation/show'
 end
 
 get '/admin/reservation/edit' do
@@ -19,10 +19,10 @@ get '/admin/reservation/edit_form' do
   erb :"admin/reservation/edit_form", :layout => :layout_back
 end
 
-get '/admin/reservation/edit_confirm' do
+post '/admin/reservation/edit_confirm' do
   x = Reservation.new(params)
   x.save(params)
-  erb :"admin/reservation/edit_confirm", :layout => :layout_back
+  redirect '/admin/reservation/show'
 end
 
 get '/admin/reservation/status' do

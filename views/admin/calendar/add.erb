@@ -15,7 +15,7 @@
 </table>
 
 <br>
-<form action="/admin/calendar/add_form">
+<form action="/admin/calendar/add_form" method="post">
   <p><strong>Select the reservation to add to the calendar:</strong></p>
     <select name="id">
       <% Reservation.all.each do |x| %>

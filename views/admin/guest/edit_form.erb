@@ -1,5 +1,5 @@
 <h2>Edit the guest information:</p>
-<form action="/admin/guest/edit_confirm">
+<form action="/admin/guest/edit_confirm" method="post">
   <p>First Name:<br>
   <input type="text" required value="<%= @form_values.first_name %>" name="first_name"></p>
 
@@ -10,11 +10,10 @@
   <input type="text" required value="<%= @form_values.age %>" name="age"></p>
 
   <p>Gender:<br>
-    <select value="<%= @form_values.gender %>" name="gender">
-    	<option value="---">---</option>
-    	<option value="female">female</option>
-    	<option value="male">male</option>
-    </select></p>
+        <select name="gender">
+        	<option <%= "selected" if @form_values.gender == "female" %> value="female">female</option>
+        	<option <%= "selected" if @form_values.gender == "male" %> value="male">male</option>
+        </select></p>
 
   <p>Reservation ID:<br>
   <input type="number" required value="<%= @form_values.reservation_id %>" name="reservation_id"></p>

@@ -5,10 +5,10 @@ get '/admin/activity/add' do
   erb :"admin/activity/add", :layout => :layout_back
 end
 
-get '/admin/activity/add_confirm' do
+post '/admin/activity/add_confirm' do
   x = Activity.new(params)
   x.insert
-  erb :"admin/activity/add_confirm", :layout => :layout_back
+  redirect "/admin/activity/list"
 end
 
 get '/admin/activity/edit' do
@@ -21,10 +21,10 @@ get '/admin/activity/edit_form' do
   erb :"admin/activity/edit_form", :layout => :layout_back
 end
 
-get '/admin/activity/edit_confirm' do
+post '/admin/activity/edit_confirm' do
   x = Activity.new(params)
   x.save(params)
-  erb :"admin/activity/edit_confirm", :layout => :layout_back
+  redirect '/admin/activity/list'
 end
 
 get '/admin/activity/list' do
@@ -36,7 +36,7 @@ get '/admin/activity/assign' do
   erb :"admin/activity/assign", :layout => :layout_back
 end
 
-get '/admin/activity/assign_confirm' do
-  populate_join(params)
-  erb :"admin/activity/assign_confirm", :layout => :layout_back
+post '/admin/activity/assign_confirm' do
+  GuestActivity.populate_join(params)
+  redirect '/admin/guest/show_activities'
 end

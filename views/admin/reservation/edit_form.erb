@@ -1,6 +1,6 @@
 <h2>Please edit the reservation information:</p>
   
-<form action="/admin/reservation/edit_confirm">
+<form action="/admin/reservation/edit_confirm" method="post">
   <p>Name:<br>
   <input type="text" required value="<%= @form_values.name %>" name="name"></p>
 
@@ -34,14 +34,15 @@
   <p>Comments:<br>
   <input type="text" required value="<%= @form_values.comments %>" name="comments"></p>
 
-  <p>Status:<br>
-      <input type="radio" name="status" value="requested">Requested
-      <br>
-      <input type="radio" name="status" value="approved">Approved
-      <br>
-      <input type="radio" name="status" value="cancelled">Cancelled
-      <br>
-      <input type="radio" name="status" value="closed">Closed</p>
+    <p>Status:<br>
+      <select name="status" value="<%= @form_values.status %>">
+      	<option <%= "selected" if @form_values.status == "requested" %> value="requested">Requested</option>
+      	<option <%= "selected" if @form_values.status == "approved" %> value="approved">Approved</option>
+      	<option <%= "selected" if @form_values.status == "cancelled" %> value="cancelled">Cancelled</option>
+      	<option <%= "selected" if @form_values.status == "closed" %> value="closed">Closed</option>
+        </select>
+    </p>
+
 
   <input type="hidden" required value="<%= @form_values.id %>" name="id">
   <input type="submit" value="Save Edits">

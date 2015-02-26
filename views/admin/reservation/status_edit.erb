@@ -1,17 +1,14 @@
 <h2>Please select the new status for this reservation:</h2>
 
-
-  
-<form action="/admin/reservation/edit_confirm">
+<form action="/admin/reservation/edit_confirm" method="post">
   <p>Group Name: <%= @form_values.name %><br>
     Current Status: <%= @form_values.status %></p>
     <p>Status:<br>
       <select name="status" value="<%= @form_values.status %>">
-      	<option value="---">---</option>
-      	<option value="requested">Requested</option>
-      	<option value="approved">Approved</option>
-      	<option value="cancelled">Cancelled</option>
-      	<option value="closed">Closed</option>
+      	<option <%= "selected" if @form_values.status == "requested" %> value="requested">Requested</option>
+      	<option <%= "selected" if @form_values.status == "approved" %> value="approved">Approved</option>
+      	<option <%= "selected" if @form_values.status == "cancelled" %> value="cancelled">Cancelled</option>
+      	<option <%= "selected" if @form_values.status == "closed" %> value="closed">Closed</option>
         </select>
     </p>
 

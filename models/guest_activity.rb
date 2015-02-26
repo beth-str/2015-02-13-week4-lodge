@@ -46,7 +46,7 @@ class GuestActivity
   # Inserts new join data for guest/activity to the guests_activities table
   # Params: guest_id, activity_id (passed from form)
   #---------------------------------------------------------
-  def populate_join(params)
+  def self.populate_join(params)
     sql_query = "INSERT INTO guests_activities (guest_id, activity_id) VALUES ('#{params["guest_id"]}', '#{params["activity_id"]}')"
     
     DATABASE.execute(sql_query)

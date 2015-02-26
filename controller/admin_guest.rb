@@ -4,10 +4,10 @@ get '/admin/guest/add' do
   erb :"admin/guest/add", :layout => :layout_back
 end
 
-get '/admin/guest/add_confirm' do
+post '/admin/guest/add_confirm' do
   @x = Guest.new(params)
   @x.insert
-  erb :"admin/guest/add_confirm", :layout => :layout_back
+  redirect "admin/guest/show"
 end
 
 get '/admin/guest/edit' do
@@ -20,11 +20,11 @@ get '/admin/guest/edit_form' do
   erb :"admin/guest/edit_form", :layout => :layout_back
 end
 
-get '/admin/guest/edit_confirm' do
+post '/admin/guest/edit_confirm' do
   x = Guest.new(params)
   x.save(params)
   @x = x
-  erb :"admin/guest/edit_confirm", :layout => :layout_back
+  redirect "admin/guest/show"
 end
 
 get "/admin/guest/show" do
