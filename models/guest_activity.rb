@@ -29,7 +29,13 @@ class GuestActivity
     @reservation_id  = options["reservation_id"]
   end
 
-
+  #---------------------------------------------------------
+  # Public: #show_guests_activities
+  # Queries the guests_activities table
+  # Params: None
+  #
+  # Returns: An Array of GuestActivity objects 
+  #---------------------------------------------------------
   def self.show_guests_activities
     sql_query = "SELECT guests.id, guests.first_name, guests.last_name, guests.age, guests.reservation_id, activities.name FROM guests JOIN guests_activities ON Guests.id = Guests_activities.guest_id JOIN activities ON Activities.id = Guests_activities.activity_id"
     
@@ -45,6 +51,8 @@ class GuestActivity
   # Public: #populate_join
   # Inserts new join data for guest/activity to the guests_activities table
   # Params: guest_id, activity_id (passed from form)
+  #
+  # Returns: An Array of Activity Objects 
   #---------------------------------------------------------
   def self.populate_join(params)
     sql_query = "INSERT INTO guests_activities (guest_id, activity_id) VALUES ('#{params["guest_id"]}', '#{params["activity_id"]}')"

@@ -9,6 +9,9 @@ require 'date'
 require 'time'
 require 'active_support'
 require 'active_support/core_ext/numeric/conversions.rb'
+require 'active_support/inflector'
+
+require_relative "database/db_setup"
 
 DATABASE = SQLite3::Database.new("database/lodge.db")
 DATABASE.results_as_hash = true
@@ -18,11 +21,9 @@ require_relative "models/guest_activity.rb"
 require_relative "models/guest.rb"
 require_relative "models/reservation.rb"
 
-require_relative "database/db_setup"
-
-require_relative "controller/admin_activities"
+require_relative "controller/admin_activity"
 require_relative "controller/admin_calendar"
-require_relative "controller/admin_guests"
+require_relative "controller/admin_guest"
 require_relative "controller/admin_reservation"
 require_relative "controller/lodge"
 require_relative "controller/index"

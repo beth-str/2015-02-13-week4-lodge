@@ -11,6 +11,7 @@
 # #insert
 # #save
 # .all  
+# .where_id_is
 #---------------------------------------------------------
 
 class Activity
@@ -27,7 +28,9 @@ class Activity
   
   #---------------------------------------------------------
   # Public: #insert
-  # Inserts new instantiation to the database
+  # Inserts new instantiation in the database
+  #
+  # Returns: The @id (Integer) of the newly created Activity object 
   #---------------------------------------------------------
   def insert
     sql_query = "INSERT INTO activities (name, person_limit) VALUES ('#{@name}', #{@person_limit})"
@@ -40,7 +43,9 @@ class Activity
   
   #---------------------------------------------------------
   # Public: #save
-  # When changes are made to a Reservation object, this saves the changes to the database
+  # When changes are made to a Reservation Object, this saves the changes to the database
+  #
+  # Returns: True 
   #---------------------------------------------------------
   def save(params)
     sql_query = "UPDATE activities SET name = '#{params[:name]}', person_limit = #{params[:person_limit]} WHERE id = #{params[:id]}"
@@ -48,11 +53,13 @@ class Activity
     DATABASE.execute(sql_query)
     return true
 end
-  
+
   
   #---------------------------------------------------------
   # Public: .all
   # Displays all activities
+  #
+  # Returns: An Array of Activity objects 
   #---------------------------------------------------------
   def self.all
     sql_query = "SELECT * FROM activities"

@@ -48,6 +48,8 @@ class Reservation
   #---------------------------------------------------------
   # Public: #insert
   # Inserts new instantiation into the database
+  #
+  # Returns: The @id (Integer) of the newly created Activity object 
   #---------------------------------------------------------
   def insert
     sql_query = "INSERT INTO reservations (name, email, address, city, state, phone, no_adults, no_children, arrival_date, departure_date, comments, status) VALUES ('#{@name}', '#{@email}', '#{@address}', '#{@city}', '#{@state}', '#{@phone}', '#{@no_adults}', '#{@no_children}', '#{@arrival_date}', '#{@departure_date}', '#{comments}', '#{@status}')"
@@ -59,6 +61,8 @@ class Reservation
   #---------------------------------------------------------
   # Public: #save
   # When changes are made to a Reservation object, this saves the changes to the database
+  #
+  # Returns: True 
   #---------------------------------------------------------
   def save(params)
     sql_query = "UPDATE reservations SET 
@@ -96,6 +100,7 @@ end
     return results_as_object
   end
 
+  #---------------------------------------------------------
     # Public: .where_id_is
     # Searches the Reservation class for a single id.
     #
@@ -111,11 +116,11 @@ end
     return results
   end
 
-
-
   #---------------------------------------------------------
   # Public: .all
   # Displays all products
+  #
+  # Returns: An Array of reservation objects  
   #---------------------------------------------------------
   def self.all
     sql_query = "SELECT * FROM reservations"
@@ -135,9 +140,9 @@ end
     #
     # Parameter: String: email
     #
-    # Returns: None
+    # Returns: Empty array
     #
-    # State Changes: Deletes reservation
+    # State Changes: Deletes reservation from the database
   #---------------------------------------------------------
   def self.delete(email)
     sql_query = "DELETE FROM reservations WHERE email = '#{email}'"

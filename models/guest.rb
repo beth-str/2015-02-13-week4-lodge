@@ -33,6 +33,8 @@ class Guest
   #---------------------------------------------------------
   # Public: #insert
   # Inserts new instantiation into the database
+  #
+  # Returns: The @id (Integer) of the newly created Guest object 
   #---------------------------------------------------------
   def insert
     sql_query = "INSERT INTO guests (first_name, last_name, age, gender, reservation_id) VALUES ('#{@first_name}', '#{@last_name}', '#{@age}', '#{@gender}', '#{@reservation_id}')"
@@ -44,6 +46,8 @@ class Guest
   #---------------------------------------------------------
   # Public: #save
   # When changes are made to a Guest object, this saves the changes to the database
+  #
+  # Returns: True 
   #---------------------------------------------------------
   def save(params)
     sql_query = "UPDATE guests SET 
@@ -79,6 +83,8 @@ class Guest
   #---------------------------------------------------------
   # Public: .all
   # Displays all guests
+  #
+  # Returns: An Array of Guest objects 
   #---------------------------------------------------------
   def self.all
     sql_query = "SELECT * FROM guests"
