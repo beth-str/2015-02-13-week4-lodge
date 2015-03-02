@@ -4,6 +4,9 @@ get '/admin/reservation/add' do
 end
 
 post '/admin/reservation/add_confirm' do
+  # before this, test the fields for ' and replace with space
+  params[:name] = check_for_apostrophes(params[:name])
+  params[:comments] = check_for_apostrophes(params[:comments])
   x = Reservation.new(params)
   x.insert
   redirect '/admin/reservation/show'
@@ -20,6 +23,9 @@ get '/admin/reservation/edit_form' do
 end
 
 post '/admin/reservation/edit_confirm' do
+  # before this, test the fields for ' and replace with space
+  params[:name] = check_for_apostrophes(params[:name])
+  params[:comments] = check_for_apostrophes(params[:comments])
   x = Reservation.new(params)
   x.save(params)
   redirect '/admin/reservation/show'

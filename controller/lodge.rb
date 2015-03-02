@@ -29,6 +29,9 @@ get "/new_reservation" do
 end
 
 post "/reservation_confirm" do
+  binding.pry
+  params[:name] = check_for_apostrophes(params[:name])
+  params[:comments] = check_for_apostrophes(params[:comments])
   x = Reservation.new(params)
   x.insert
   @reservation_id = params[:name]

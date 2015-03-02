@@ -149,5 +149,5 @@ end
     
       DATABASE.execute(sql_query)
   end
-  
+
 end

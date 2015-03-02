@@ -10,6 +10,22 @@
 #---------------------------------------------------------
 module LodgeHelper
 
+  #---------------------------------------------------------
+    # Public: .check_for_apostrophes
+    # Searches for ' in string and changes to blank space (to avoid SQL error) 
+    #
+    # Parameter: String: (from params)
+    #
+    # Returns: String (without ')
+    #
+    # State Changes: Deletes ' from the string
+  #---------------------------------------------------------
+  def check_for_apostrophes(string)
+    # if params includes ' replace with blank space
+   string.gsub(/(')/, ' ')
+   return self
+  end
+
 
   #---------------------------------------------------------
   # Public: #send_message
