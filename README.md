@@ -18,6 +18,6 @@ This project also uses:
 - Pony gem (send email via contact form)
 
 Video overview of the project: 
-https://vimeo.com/120328408 (public website)
-https://vimeo.com/120329641 (management tool)
-https://vimeo.com/120988646 (refactored version with responsive design)
+- https://vimeo.com/120328408 (public website)
+- https://vimeo.com/120329641 (management tool)
+- https://vimeo.com/120988646 (refactored version with responsive design)
