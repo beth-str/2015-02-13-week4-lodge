@@ -52,7 +52,7 @@ module LodgeHelper
 
   #---------------------------------------------------------
   # Public: date_parse
-  # Converts date from google calendar to display.
+  # Converts date from google calendar to display (as a string)
   # Params: (start_time or end_time - from event object)
   #---------------------------------------------------------
   def date_parse(time_object)       # 2015-03-26 11:00:00 -0600
@@ -64,7 +64,9 @@ module LodgeHelper
 
   
   #---------------------------------------------------------
-  # Initialization of calendar
+  # Public: reverse_date_parse
+  # Converts date string to a datetime object
+  # Params: (start_time or end_time - from event object)
   #---------------------------------------------------------
   def reverse_date_parse(time_string)       # "03/25/2015"  => 2015-03-26 11:00:00 -0600
     array = []
@@ -81,14 +83,17 @@ module LodgeHelper
 
 
   #---------------------------------------------------------
-  # Initialization of calendar
+  # Initialization of google calendar
   #---------------------------------------------------------
-  cal = Google::Calendar.new(:client_id => '212643930905-2g9plm4m8kk8fk2prqs4ojf51p16ke7v.apps.googleusercontent.com', :client_secret => 'iTLIjzSm5cNzVwuH8FCPnhTD', :calendar => 'ld27870tkt6dmn85ksm6kibrrg@group.calendar.google.com', :redirect_url  => 'http://127.0.0.1:4567/', :refresh_token => '1/CadlbSaaYaNX-ftCafL69qHH9jsX_vL95fPNCZtOCQIMEudVrK5jSpoR30zcRFq6')
+  cal = Google::Calendar.new(:client_id => '212643930905-2g9plm4m8kk8fk2prqs4ojf51p16ke7v.apps.googleusercontent.com', 
+		:client_secret => 'iTLIjzSm5cNzVwuH8FCPnhTD', 
+		:calendar => 'ld27870tkt6dmn85ksm6kibrrg@group.calendar.google.com', 
+		:redirect_url  => 'http://127.0.0.1:4567/', 
+		:refresh_token => '1/CadlbSaaYaNX-ftCafL69qHH9jsX_vL95fPNCZtOCQIMEudVrK5jSpoR30zcRFq6')
 
   #---------------------------------------------------------
-  # Public: #populate_join
-  # Inserts new join data for guest/activity to the guests_activities table
-  # Params: guest_id, activity_id (passed from form)
+  # Public: #create_google_calendar_event
+  # Creates a new calendar event
   #---------------------------------------------------------
   def create_google_calendar_event(params)
     event = cal.create_event do |e|
